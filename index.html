@@ -6,176 +6,190 @@
     <title>ボーイスカウト名取第一団</title>
     
     <style>
-        /* --- 変数設定（色やフォントをここで一括管理。引き継ぎやすさ重視） --- */
+        /* --- 変数設定 --- */
         :root {
             --scout-green: #2e5a27;
             --scout-yellow: #f4d03f;
             --bg-light: #f4f7f6;
             --text-dark: #333;
+            --white: #ffffff;
         }
 
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
-            font-family: "Helvetica Neue", "Arial", "Hiragino Sans", "Meiryo", sans-serif;
+            font-family: "Helvetica Neue", Arial, "Hiragino Sans", sans-serif;
             background-color: var(--bg-light);
-            color: var(--text-dark);
-            scroll-behavior: smooth; /* スムーズスクロール */
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* 1. 背景動画・メインビジュアル */
-        .hero {
-            position: relative;
-            height: 80vh;
-            width: 100%;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-        }
-
-        #video-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            z-index: -1;
-            object-fit: cover;
-            filter: brightness(0.7); /* 動画を少し暗くして文字を見やすく */
-        }
-
-        /* 2. ヘッダー */
+        /* --- ヘッダー & ナビゲーション --- */
         header {
             position: fixed;
             top: 0;
             width: 100%;
+            height: 70px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
+            padding: 0 40px;
             box-sizing: border-box;
-            background: rgba(46, 90, 39, 0.9); /* スカウトグリーン（半透明） */
+            background: rgba(46, 90, 39, 0.95);
             z-index: 1000;
+            color: var(--white);
             backdrop-filter: blur(5px);
         }
 
         .logo {
             font-size: 1.2rem;
             font-weight: bold;
-            color: white;
             text-decoration: none;
+            color: var(--white);
+            z-index: 1001;
         }
 
-        nav ul {
+        /* デスクトップ用メニュー */
+        .nav-links {
             list-style: none;
-            margin: 0;
-            padding: 0;
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
-        nav ul li a {
+        .nav-links a {
             text-decoration: none;
-            color: white;
-            font-size: 0.9rem;
+            color: var(--white);
             font-weight: bold;
-            transition: 0.3s ease;
+            font-size: 0.9rem;
+            transition: 0.3s;
         }
 
-        nav ul li a:hover {
+        .nav-links a:hover {
             color: var(--scout-yellow);
-            transform: translateY(-2px);
-            display: inline-block;
         }
 
-        /* 3. コンテンツエリア */
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
+        /* --- ハンバーガーメニュー（スマホ用） --- */
+        .hamburger {
+            display: none; /* 初期は隠す */
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 10px;
         }
 
-        .section-title {
-            border-left: 5px solid var(--scout-green);
-            padding-left: 15px;
-            margin-bottom: 30px;
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            margin: 5px 0;
+            transition: 0.4s;
         }
 
-        /* ポータルボタン（SNS・活動計画など） */
+        /* スマホ時のメニュー展開スタイル */
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+
+            .nav-links {
+                position: fixed;
+                right: -100%; /* 画面外に隠す */
+                top: 0;
+                width: 70%;
+                height: 100vh;
+                background: var(--scout-green);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.5s;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                right: 0; /* 画面内に引き出す */
+            }
+
+            .nav-links li { margin: 20px 0; }
+        }
+
+        /* ハンバーガーのアニメーション（クリック時） */
+        .hamburger.active span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+
+        /* --- メインビジュアル --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        #video-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.6);
+        }
+
+        .hero-text h1 { font-size: 3.5rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+
+        /* --- コンテンツエリア --- */
+        .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
+        .section-title { border-left: 5px solid var(--scout-green); padding-left: 15px; margin-bottom: 40px; }
+
+        /* ポータルグリッド */
         .portal-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
         .card {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
+            padding: 40px 20px;
+            border-radius: 20px;
             text-decoration: none;
             color: var(--text-dark);
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 遊び心のある動き */
-            border: 2px solid transparent;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-bottom: 5px solid var(--scout-yellow);
         }
 
         .card:hover {
-            transform: scale(1.05) rotate(1deg); /* ぷるっと動く */
-            border-color: var(--scout-green);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            background-color: #f9fdf9;
         }
 
-        .card i {
-            font-size: 2rem;
-            display: block;
-            margin-bottom: 10px;
-        }
+        .card h3 { color: var(--scout-green); margin-bottom: 10px; }
 
-        /* 4. スマホ対応 */
-        @media (max-width: 768px) {
-            header {
-                padding: 15px;
-                flex-direction: column;
-                gap: 10px;
-            }
-            nav ul {
-                gap: 10px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            nav ul li a {
-                font-size: 0.8rem;
-            }
-            .hero {
-                height: 50vh;
-            }
-        }
-
-        /* 遊び心：ロープが揺れるようなアニメーション */
-        @keyframes sway {
-            0% { transform: rotate(-2deg); }
-            100% { transform: rotate(2deg); }
-        }
-        .sway-text {
-            display: inline-block;
-            animation: sway 2s infinite alternate ease-in-out;
-        }
+        footer { text-align: center; padding: 50px; background: #333; color: #ccc; margin-top: 80px; }
     </style>
 </head>
 <body>
 
     <header>
         <a href="#" class="logo">ボーイスカウト名取第一団</a>
+        
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <nav>
-            <ul>
+            <ul class="nav-links" id="nav-menu">
                 <li><a href="#portal">ポータル</a></li>
-                <li><a href="#money">費用について</a></li>
-                <li><a href="#plan">活動計画</a></li>
-                <li><a href="#admin">管理用</a></li>
+                <li><a href="fee.html">費用について</a></li>
+                <li><a href="#">年間活動計画</a></li>
+                <li><a href="#">お問い合わせ</a></li>
             </ul>
         </nav>
     </header>
@@ -184,38 +198,59 @@
         <video id="video-bg" autoplay muted loop playsinline>
             <source src="bg-video.mp4" type="video/mp4">
         </video>
-        <div style="text-align: center;">
-            <h1 style="font-size: 3rem; margin-bottom: 0;">備えよ常に</h1>
-            <p class="sway-text">名取の自然で、たくましく遊ぼう！</p>
+        <div class="hero-text">
+            <h1>そなえよつねに</h1>
+            <p>宮城県名取市を拠点に活動するボーイスカウト第1団です</p>
         </div>
     </section>
 
     <div class="container" id="portal">
-        <h2 class="section-title">隊員・保護者向けポータル</h2>
+        <h2 class="section-title">ポータルメニュー</h2>
         <div class="portal-grid">
             <a href="#" class="card">
                 <h3>各隊のSNS</h3>
-                <p>活動の様子をチェック！</p>
+                <p>活動の様子を写真や動画で発信中！</p>
             </a>
-            <a href="#" class="card" id="money">
+
+            <a href="fee.html" class="card">
                 <h3>費用について</h3>
-                <p>入団金・月会費など</p>
+                <p>入団金、月会費、保険料などの詳細はこちら</p>
             </a>
-            <a href="#" class="card" id="plan">
-                <h3>年間活動計画</h3>
-                <p>キャンプや集会の日程</p>
-            </a>
+
             <a href="#" class="card">
-                <h3>お問い合わせ</h3>
-                <p>見学・体験随時受付中</p>
+                <h3>年間活動計画</h3>
+                <p>今年度のキャンプやイベントの予定表</p>
+            </a>
+
+            <a href="#" class="card">
+                <h3>運営・引き継ぎ資料</h3>
+                <p>次期担当者へのマニュアル・資料保管庫</p>
             </a>
         </div>
     </div>
 
-    <footer style="text-align: center; padding: 40px; background: #ddd; margin-top: 50px;">
-        <p>&copy; 2024 ボーイスカウト名取第一団</p>
-        <p style="font-size: 0.8rem; color: #777;">GitHub Pagesで運用中（引き継ぎ用：このサイトの修正はindex.htmlを編集するだけ！）</p>
+    <footer>
+        <p>&copy; 2026 Boy Scouts Natori 1st Group</p>
+        <p style="font-size: 0.7rem;">Created for Natori 1st Scout Group</p>
     </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // メニューリンクをクリックしたら閉じる（スマホ対策）
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
