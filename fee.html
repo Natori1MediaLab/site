@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>費用について | ボーイスカウト名取第一団</title>
+    <style>
+        /* index.htmlと共通の変数 */
+        :root {
+            --scout-green: #2e5a27;
+            --scout-yellow: #f4d03f;
+            --bg-light: #fdfdfd;
+            --text-dark: #333;
+            --accent-orange: #e67e22;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: var(--scout-green);
+            padding: 15px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            border-bottom: 3px solid var(--scout-yellow);
+            padding-bottom: 10px;
+            color: var(--scout-green);
+        }
+
+        /* --- テーブル（表）のスタイル --- */
+        .fee-table-wrapper {
+            overflow-x: auto; /* スマホで横スクロールできるように */
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            min-width: 600px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--scout-green);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* 偶数行の色を変えて見やすく */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--accent-orange);
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        /* 補足説明のボックス */
+        .info-box {
+            background: #fff9db;
+            border-left: 5px solid var(--scout-yellow);
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: var(--scout-green);
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* スマホ用調整 */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            th, td { padding: 10px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div style="font-weight: bold;">ボーイスカウト名取第一団</div>
+        <nav><a href="index.html" style="color: white; text-decoration: none; font-size: 0.8rem;">TOPへ戻る</a></nav>
+    </header>
+
+    <div class="container">
+        <h1>活動にかかる費用</h1>
+        <p>名取第一団では、健全な活動を継続するため、以下の費用をいただいております。<br>
+        <small>※金額は年度によって改定される場合があります。</small></p>
+
+        <section>
+            <h2>1. 入団時・年度始めにかかる費用</h2>
+            <div class="fee-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>項目</th>
+                            <th>内容</th>
+                            <th>金額</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>加盟登録費</strong></td>
+                            <td>ボーイスカウト日本連盟への登録・保険料（年1回）</td>
+                            <td class="price">7,000円 / 年</td>
+                        </tr>
+                        <tr>
+                            <td><strong>育成会費</strong></td>
+                            <td>団の維持運営・備品購入などのための費用</td>
+                            <td class="price">12,000円 / 年</td>
+                        </tr>
+                        <tr>
+                            <td><strong>制服・教材費</strong></td>
+                            <td>入団時に揃える制服やブック代など（初回のみ）</td>
+                            <td class="price">実費（約1.5万円〜）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. 月々の活動費（隊費）</h2>
+            <div class="fee-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>隊名</th>
+                            <th>対象</th>
+                            <th>金額（月額）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ビーバースカウト</td>
+                            <td>小1 〜 小2</td>
+                            <td class="price">500円</td>
+                        </tr>
+                        <tr>
+                            <td>カブスカウト</td>
+                            <td>小3 〜 小5</td>
+                            <td class="price">1,000円</td>
+                        </tr>
+                        <tr>
+                            <td>ボーイスカウト以上</td>
+                            <td>小6 〜</td>
+                            <td class="price">1,000円</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="info-box">
+            <strong>【別途かかる費用について】</strong><br>
+            夏季キャンプ、スキー訓練、大きな遠征など、宿泊を伴う行事の際は、その都度「参加費」として実費を徴収させていただく場合があります。
+        </div>
+
+        <a href="index.html" class="back-link">← ホームへ戻る</a>
+    </div>
+
+    <footer style="text-align: center; padding: 20px; color: #888; font-size: 0.8rem;">
+        &copy; 2026 ボーイスカウト名取第一団
+    </footer>
+
+</body>
+</html>
