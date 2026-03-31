@@ -22,7 +22,7 @@
             overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* --- 2. ヘッダー（英語併記） --- */
+        /* --- 2. ヘッダー --- */
         header {
             position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
@@ -31,21 +31,41 @@
             color: var(--white); backdrop-filter: blur(5px);
         }
 
-        .logo { text-decoration: none; color: var(--white); z-index: 1001; }
+        .logo { text-decoration: none; color: var(--white); z-index: 1100; }
         .logo .main-name { font-size: 1.1rem; font-weight: bold; display: block; }
         .logo .sub-name { font-size: 0.7rem; opacity: 0.8; }
 
-        .nav-links { list-style: none; display: flex; gap: 20px; }
+        /* デスクトップ用メニュー */
+        .nav-links { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
         .nav-links li { text-align: center; }
         .nav-links a { text-decoration: none; color: var(--white); transition: 0.3s; }
         .nav-links a .ja { display: block; font-size: 0.85rem; font-weight: bold; }
         .nav-links a .en { display: block; font-size: 0.6rem; opacity: 0.7; text-transform: uppercase; }
         .nav-links a:hover { color: var(--scout-yellow); }
 
-        .hamburger { display: none; cursor: pointer; z-index: 1001; background: none; border: none; }
-        .hamburger span { display: block; width: 25px; height: 3px; background: var(--white); margin: 5px 0; transition: 0.4s; }
+        /* --- 3. ハンバーガーボタン（アニメーション付） --- */
+        .hamburger {
+            display: none; /* デフォルトは非表示 */
+            cursor: pointer; z-index: 1100; background: none; border: none;
+            width: 30px; height: 24px; position: relative; padding: 0;
+        }
 
-        /* --- 3. スライドショー --- */
+        .hamburger span {
+            display: block; position: absolute; width: 100%; height: 3px;
+            background: var(--white); border-radius: 3px; transition: all 0.4s ease;
+        }
+
+        /* 三本線の位置設定 */
+        .hamburger span:nth-child(1) { top: 0; }
+        .hamburger span:nth-child(2) { top: 10px; }
+        .hamburger span:nth-child(3) { top: 20px; }
+
+        /* 活性化（×印）時のアニメーション */
+        .hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-20px); }
+        .hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+        /* --- 4. スライドショー --- */
         .slider-container {
             width: 100%; height: 55vh; overflow: hidden; position: relative;
             margin-top: 80px; background: #eee;
@@ -54,7 +74,7 @@
         .slider-track img { width: 400px; height: 55vh; object-fit: cover; flex-shrink: 0; border-right: 4px solid var(--white); }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-400px * 5)); } }
 
-        /* --- 4. キャッチコピー & アニメーション --- */
+        /* --- 5. キャッチコピー & アニメーション --- */
         .copy-section { text-align: center; padding: 80px 20px; background: var(--white); }
         .animated-text-wrapper { display: inline-block; position: relative; padding: 15px 0; }
         .animated-text {
@@ -69,7 +89,7 @@
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes lineDraw { to { width: 110%; } }
 
-        /* --- 5. 体験セクション（修正済） --- */
+        /* --- 6. 体験セクション --- */
         .welcome-section { padding: 40px 20px; background: #fff9db; text-align: center; }
         .welcome-box {
             max-width: 650px; margin: 0 auto; border: 2px dashed var(--scout-green);
@@ -80,17 +100,10 @@
             padding: 5px 18px; border-radius: 50px; font-size: 0.8rem;
             position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
         }
-        .welcome-text {
-            font-size: 1.6rem; color: var(--scout-green); margin-bottom: 10px;
-            animation: pulse 2s infinite ease-in-out;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); text-shadow: 0 0 10px rgba(46, 90, 39, 0.1); }
-            100% { transform: scale(1); }
-        }
+        .welcome-text { font-size: 1.6rem; color: var(--scout-green); margin-bottom: 10px; animation: pulse 2s infinite ease-in-out; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
 
-        /* --- 6. ポータルメニュー --- */
+        /* --- 7. ポータルメニュー --- */
         .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
         .section-title { text-align: center; margin-bottom: 50px; }
         .section-title .ja { display: block; font-size: 1.5rem; color: var(--scout-green); font-weight: bold; }
@@ -107,19 +120,23 @@
         .card .en { display: block; font-size: 0.7rem; color: #999; text-transform: uppercase; margin-bottom: 15px; }
         .card p { font-size: 0.85rem; color: #666; margin: 0; line-height: 1.6; }
 
-        /* --- 7. レスポンシブ --- */
+        /* --- 8. スマホレスポンシブ（重要） --- */
         @media (max-width: 768px) {
-            header { padding: 0 20px; }
-            .hamburger { display: block; }
+            header { padding: 0 25px; }
+            .hamburger { display: block; } /* スマホでのみ表示 */
+
             .nav-links {
-                position: fixed; right: -100%; top: 0; width: 80%; height: 100vh;
+                position: fixed; right: -100%; top: 0; width: 100%; height: 100vh;
                 background: var(--scout-green); flex-direction: column;
-                align-items: center; justify-content: center; transition: 0.5s;
+                align-items: center; justify-content: center; transition: 0.5s ease-in-out;
+                z-index: 1050; gap: 40px;
             }
             .nav-links.active { right: 0; }
-            .nav-links li { margin: 15px 0; }
-            .animated-text { font-size: 1.3rem; }
-            .welcome-text { font-size: 1.25rem; }
+            .nav-links a .ja { font-size: 1.2rem; }
+            .nav-links a .en { font-size: 0.8rem; }
+
+            .animated-text { font-size: 1.25rem; }
+            .welcome-text { font-size: 1.2rem; }
         }
 
         footer { text-align: center; padding: 60px; background: #333; color: #999; margin-top: 100px; }
@@ -132,7 +149,11 @@
             <span class="main-name">ボーイスカウト名取第一団</span>
             <span class="sub-name">Boy Scouts Natori 1st Group</span>
         </a>
-        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+
+        <button class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </button>
+
         <nav>
             <ul class="nav-links" id="nav-menu">
                 <li><a href="about.html"><span class="ja">ボーイスカウトってなに？</span><span class="en">About</span></a></li>
@@ -165,27 +186,12 @@
     </div>
 
     <div class="container" id="portal">
-        <div class="section-title">
-            <span class="ja">ポータルメニュー</span>
-            <span class="en">Portal Menu</span>
-        </div>
+        <div class="section-title"><span class="ja">ポータルメニュー</span><span class="en">Portal Menu</span></div>
         <div class="portal-grid">
-            <a href="fee.html" class="card">
-                <span class="ja">費用について</span><span class="en">Fees & Costs</span>
-                <p>入団金や月々の会費、<br>活動にかかる費用をご案内します。</p>
-            </a>
-            <a href="#" class="card">
-                <span class="ja">年間活動計画</span><span class="en">Annual Schedule</span>
-                <p>キャンプや季節の行事、<br>1年の予定をチェック！</p>
-            </a>
-            <a href="about.html" class="card">
-                <span class="ja">ボーイスカウトってなに？</span><span class="en">What is Scouting?</span>
-                <p>歴史や教育方針、<br>各隊の対象年齢について詳しく。</p>
-            </a>
-            <a href="#" class="card">
-                <span class="ja">各隊のSNS</span><span class="en">Social Media</span>
-                <p>日々の元気な活動風景を、<br>写真や動画で配信中！</p>
-            </a>
+            <a href="fee.html" class="card"><span class="ja">費用について</span><span class="en">Fees & Costs</span><p>入団金や月々の会費、活動にかかる費用をご案内します。</p></a>
+            <a href="#" class="card"><span class="ja">年間活動計画</span><span class="en">Annual Schedule</span><p>キャンプや季節の行事、1年の予定をチェック！</p></a>
+            <a href="about.html" class="card"><span class="ja">ボーイスカウトってなに？</span><span class="en">What is Scouting?</span><p>歴史や教育方針、各隊の対象年齢について詳しく。</p></a>
+            <a href="#" class="card"><span class="ja">各隊のSNS</span><span class="en">Social Media</span><p>日々の元気な活動風景を、写真や動画で配信中！</p></a>
         </div>
     </div>
 
@@ -194,10 +200,14 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
+
+        // クリック時にactiveクラスを付け外しする
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
+
+        // メニューリンクをクリックしたらメニューを閉じる
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
