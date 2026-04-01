@@ -23,7 +23,7 @@
         }
 
         /* 改行コントロール用クラス */
-        .sp-only { display: none; } /* PCでは隠す */
+        .sp-only { display: none; }
 
         /* --- 2. ヘッダー --- */
         header {
@@ -127,10 +127,7 @@
         @media (max-width: 768px) {
             header { padding: 0 15px; }
             .hamburger { display: block; } 
-            
-            /* スマホ用改行を有効にする */
             .sp-only { display: inline; }
-
             .nav-links {
                 position: fixed; right: -100%; top: 0; width: 100%; height: 100vh;
                 background: var(--scout-green); flex-direction: column;
@@ -142,15 +139,35 @@
             .nav-links a::after { display: none; }
             .nav-links a .ja { font-size: 1.4rem; }
             .nav-links a .en { font-size: 0.9rem; }
-
             .animated-text { font-size: 1.25rem; }
             .welcome-text { font-size: 1.2rem; }
-            
             .card .ja { white-space: normal; font-size: 1.2rem; }
-            .card p { font-size: 0.85rem; }
         }
 
-        footer { text-align: center; padding: 60px; background: #333; color: #999; margin-top: 100px; }
+        /* --- 9. フッター（免責事項追加） --- */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: #333;
+            color: #ccc;
+            margin-top: 100px;
+        }
+        footer .copyright { margin-bottom: 20px; color: #999; }
+        footer .disclaimer {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 0.75rem;
+            line-height: 1.8;
+            color: #aaa;
+        }
+        footer .disclaimer a {
+            color: var(--scout-yellow);
+            text-decoration: underline;
+        }
+        footer .disclaimer a:hover {
+            text-decoration: none;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
@@ -215,7 +232,14 @@
         </div>
     </div>
 
-    <footer><p>&copy; 2026 ボーイスカウト名取第一団</p></footer>
+    <footer>
+        <div class="copyright">&copy; 2026 ボーイスカウト名取第一団</div>
+        <div class="disclaimer">
+            このホームページ上のスカウト運動に関する事項は、ボーイスカウト日本連盟ホームページ掲載<br class="sp-only">
+            「<a href="https://www.scout.or.jp/member/site-open" target="_blank">ボーイスカウト関係のホームページ開設</a>」に沿って、<br class="sp-only">
+            「ボーイスカウト名取１団事務局」責任のもとに掲載しています。
+        </div>
+    </footer>
 
     <script>
         const hamburger = document.getElementById('hamburger');
