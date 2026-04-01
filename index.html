@@ -22,6 +22,9 @@
             overflow-x: hidden; scroll-behavior: smooth;
         }
 
+        /* 改行コントロール用クラス */
+        .sp-only { display: none; } /* PCでは隠す */
+
         /* --- 2. ヘッダー --- */
         header {
             position: fixed; top: 0; width: 100%; height: 80px;
@@ -99,8 +102,9 @@
         }
         .welcome-text { font-size: 1.6rem; color: var(--scout-green); margin-bottom: 10px; animation: pulse 2s infinite ease-in-out; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+        .welcome-box p { line-height: 1.8; color: #444; }
 
-        /* --- 7. ポータルメニュー（修正箇所） --- */
+        /* --- 7. ポータルメニュー --- */
         .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
         .section-title { text-align: center; margin-bottom: 50px; }
         .section-title .ja { display: block; font-size: 1.5rem; color: var(--scout-green); font-weight: bold; }
@@ -115,11 +119,7 @@
         }
         .card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
         
-        /* タイトル改行防止設定 */
-        .card .ja { 
-            display: block; font-size: 1.15rem; font-weight: bold; color: var(--scout-green); 
-            margin-bottom: 5px; white-space: nowrap; 
-        }
+        .card .ja { display: block; font-size: 1.15rem; font-weight: bold; color: var(--scout-green); margin-bottom: 5px; white-space: nowrap; }
         .card .en { display: block; font-size: 0.7rem; color: #999; text-transform: uppercase; margin-bottom: 15px; }
         .card p { font-size: 0.85rem; color: #666; margin: 0; line-height: 1.6; }
 
@@ -127,6 +127,10 @@
         @media (max-width: 768px) {
             header { padding: 0 15px; }
             .hamburger { display: block; } 
+            
+            /* スマホ用改行を有効にする */
+            .sp-only { display: inline; }
+
             .nav-links {
                 position: fixed; right: -100%; top: 0; width: 100%; height: 100vh;
                 background: var(--scout-green); flex-direction: column;
@@ -142,7 +146,6 @@
             .animated-text { font-size: 1.25rem; }
             .welcome-text { font-size: 1.2rem; }
             
-            /* スマホ版ではタイトル改行を許可してもOK（画面幅が狭いため） */
             .card .ja { white-space: normal; font-size: 1.2rem; }
             .card p { font-size: 0.85rem; }
         }
@@ -183,7 +186,10 @@
         <div class="welcome-box">
             <span class="welcome-tag">JOIN US!</span>
             <h2 class="welcome-text">体験・見学、歓迎します！</h2>
-            <p>名取の自然の中で、新しい冒険を一緒に始めませんか？<br>ぜひ見学・体験にいらしてください！</p>
+            <p>
+                名取の自然の中で、新しい冒険を<br class="sp-only">一緒に始めませんか？<br>
+                ぜひ見学・体験に<br class="sp-only">いらしてください！
+            </p>
         </div>
     </div>
 
