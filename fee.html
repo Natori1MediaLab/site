@@ -3,199 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>費用について | ボーイスカウト名取第一団</title>
+    <title>費用について - ボーイスカウト名取第一団</title>
     <style>
-        /* index.htmlと共通の変数 */
         :root {
             --scout-green: #2e5a27;
             --scout-yellow: #f4d03f;
-            --bg-light: #fdfdfd;
+            --bg-light: #f4f7f6;
             --text-dark: #333;
-            --accent-orange: #e67e22;
+            --white: #ffffff;
         }
 
         body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Sans", sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
+            margin: 0; padding: 0;
+            font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Meiryo", sans-serif;
             background-color: var(--bg-light);
-            margin: 0;
-            padding: 0;
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
+        /* ヘッダー（index共通） */
         header {
             background: var(--scout-green);
-            padding: 15px 20px;
-            color: white;
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: var(--white);
         }
 
+        .logo { text-decoration: none; color: var(--white); }
+        .logo .main-name { font-size: 1.1rem; font-weight: bold; display: block; }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 0.9rem;
+            border: 1px solid var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--white);
+            color: var(--scout-green);
+        }
+
+        /* メインコンテンツ */
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
         h1 {
-            border-bottom: 3px solid var(--scout-yellow);
-            padding-bottom: 10px;
             color: var(--scout-green);
+            border-left: 6px solid var(--scout-yellow);
+            padding-left: 15px;
+            margin-bottom: 30px;
         }
 
-        /* --- テーブル（表）のスタイル --- */
-        .fee-table-wrapper {
-            overflow-x: auto; /* スマホで横スクロールできるように */
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-radius: 10px;
+        .fee-section {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
         }
 
+        h2 {
+            font-size: 1.3rem;
+            color: var(--scout-green);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: "●";
+            color: var(--scout-yellow);
+        }
+
+        /* テーブル設定 */
         table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
-            min-width: 600px;
+            margin: 20px 0;
         }
 
         th, td {
-            border: 1px solid #ddd;
-            padding: 15px;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
             text-align: left;
         }
 
         th {
-            background-color: var(--scout-green);
-            color: white;
-            font-weight: bold;
-        }
-
-        /* 偶数行の色を変えて見やすく */
-        tr:nth-child(even) {
             background-color: #f9f9f9;
+            width: 60%;
         }
 
         .price {
-            font-weight: bold;
-            color: var(--accent-orange);
             text-align: right;
-            white-space: nowrap;
+            font-weight: bold;
         }
 
-        /* 補足説明のボックス */
-        .info-box {
+        /* 合計金額デザイン */
+        .total-box {
             background: #fff9db;
-            border-left: 5px solid var(--scout-yellow);
-            padding: 15px;
-            margin: 20px 0;
-            font-size: 0.9rem;
+            border: 2px solid var(--scout-yellow);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: right;
+            margin-top: 10px;
         }
 
-        .back-link {
-            display: inline-block;
-            margin-top: 30px;
-            text-decoration: none;
+        .total-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .total-amount {
+            font-size: 1.8rem;
             color: var(--scout-green);
             font-weight: bold;
+            margin-left: 10px;
         }
 
-        .back-link:hover {
-            text-decoration: underline;
+        .note {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 15px;
         }
 
-        /* スマホ用調整 */
+        /* レスポンシブ */
         @media (max-width: 600px) {
-            h1 { font-size: 1.5rem; }
-            th, td { padding: 10px; font-size: 0.85rem; }
+            header { padding: 15px 20px; }
+            .container { margin: 20px auto; }
+            .total-amount { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div style="font-weight: bold;">ボーイスカウト名取第一団</div>
-        <nav><a href="index.html" style="color: white; text-decoration: none; font-size: 0.8rem;">TOPへ戻る</a></nav>
+        <a href="index.html" class="logo">
+            <span class="main-name">ボーイスカウト名取第一団</span>
+        </a>
+        <a href="index.html" class="back-link">← 戻る</a>
     </header>
 
     <div class="container">
-        <h1>活動にかかる費用</h1>
-        <p>名取第一団では、健全な活動を継続するため、以下の費用をいただいております。<br>
-        <small>※金額は年度によって改定される場合があります。</small></p>
+        <h1>費用について</h1>
 
-        <section>
-            <h2>1. 入団時・年度始めにかかる費用</h2>
-            <div class="fee-table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>項目</th>
-                            <th>内容</th>
-                            <th>金額</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>加盟登録費</strong></td>
-                            <td>ボーイスカウト日本連盟への登録・保険料（年1回）</td>
-                            <td class="price">7,000円 / 年</td>
-                        </tr>
-                        <tr>
-                            <td><strong>育成会費</strong></td>
-                            <td>団の維持運営・備品購入などのための費用</td>
-                            <td class="price">12,000円 / 年</td>
-                        </tr>
-                        <tr>
-                            <td><strong>制服・教材費</strong></td>
-                            <td>入団時に揃える制服やブック代など（初回のみ）</td>
-                            <td class="price">実費（約1.5万円〜）</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="fee-section">
+            <h2>入団時（初年度）にかかる費用</h2>
+            <p>新しく活動を始める際、最初にかかる費用です。</p>
+            <table>
+                <tr>
+                    <th>入団金（事務手数料など）</th>
+                    <td class="price">¥2,000</td>
+                </tr>
+                <tr>
+                    <th>加盟登録費（年間）</th>
+                    <td class="price">¥6,600</td>
+                </tr>
+                <tr>
+                    <th>団費（活動運営費 / 年間）</th>
+                    <td class="price">¥12,000</td>
+                </tr>
+                <tr>
+                    <th>制服・備品代（概算）</th>
+                    <td class="price">¥10,000</td>
+                </tr>
+            </table>
+            <div class="total-box">
+                <span class="total-label">初年度 合計金額目安:</span>
+                <span class="total-amount">¥30,600</span>
             </div>
-        </section>
-
-        <section>
-            <h2>2. 月々の活動費（隊費）</h2>
-            <div class="fee-table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>隊名</th>
-                            <th>対象</th>
-                            <th>金額（月額）</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>ビーバースカウト</td>
-                            <td>小1 〜 小2</td>
-                            <td class="price">500円</td>
-                        </tr>
-                        <tr>
-                            <td>カブスカウト</td>
-                            <td>小3 〜 小5</td>
-                            <td class="price">1,000円</td>
-                        </tr>
-                        <tr>
-                            <td>ボーイスカウト以上</td>
-                            <td>小6 〜</td>
-                            <td class="price">1,000円</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <div class="info-box">
-            <strong>【別途かかる費用について】</strong><br>
-            夏季キャンプ、スキー訓練、大きな遠征など、宿泊を伴う行事の際は、その都度「参加費」として実費を徴収させていただく場合があります。
         </div>
 
-        <a href="index.html" class="back-link">← ホームへ戻る</a>
+        <div class="fee-section">
+            <h2>2年目から継続してかかる費用</h2>
+            <p>入団金や制服代が不要になるため、負担が少なくなります。</p>
+            <table>
+                <tr>
+                    <th>加盟登録費（年間）</th>
+                    <td class="price">¥6,600</td>
+                </tr>
+                <tr>
+                    <th>団費（活動運営費 / 年間）</th>
+                    <td class="price">¥12,000</td>
+                </tr>
+            </table>
+            <div class="total-box">
+                <span class="total-label">次年度以降 合計金額（年間）:</span>
+                <span class="total-amount">¥18,600</span>
+            </div>
+            <p class="note">※団費は月々¥1,000ずつの積み立てとして計算しています。<br>※キャンプ等の大きなイベント時は、別途実費（交通費・食費など）を徴収する場合があります。</p>
+        </div>
+
     </div>
 
-    <footer style="text-align: center; padding: 20px; color: #888; font-size: 0.8rem;">
+    <footer style="text-align: center; padding: 40px; color: #999; font-size: 0.8rem;">
         &copy; 2026 ボーイスカウト名取第一団
     </footer>
 
