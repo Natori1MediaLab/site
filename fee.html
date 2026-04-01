@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>費用について - ボーイスカウト名取第一団</title>
+    
     <style>
+        /* --- 1. 基本設定（共通） --- */
         :root {
             --scout-green: #2e5a27;
             --scout-yellow: #f4d03f;
@@ -13,46 +15,62 @@
             --white: #ffffff;
         }
 
-        body {
-            margin: 0; padding: 0;
+        body, html {
+            margin: 0; padding: 0; width: 100%;
             font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Meiryo", sans-serif;
             background-color: var(--bg-light);
             color: var(--text-dark);
-            line-height: 1.6;
+            overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* ヘッダー（index共通） */
+        /* --- 2. ヘッダー（indexと共通化） --- */
         header {
-            background: var(--scout-green);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--white);
+            position: fixed; top: 0; width: 100%; height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 40px; box-sizing: border-box;
+            background: rgba(46, 90, 39, 0.95); z-index: 1000;
+            color: var(--white); backdrop-filter: blur(5px);
         }
 
-        .logo { text-decoration: none; color: var(--white); }
+        .logo { text-decoration: none; color: var(--white); z-index: 1100; flex-shrink: 0; transition: transform 0.3s ease; }
+        .logo:hover { transform: scale(1.02); }
         .logo .main-name { font-size: 1.1rem; font-weight: bold; display: block; }
+        .logo .sub-name { font-size: 0.7rem; opacity: 0.8; }
 
-        .back-link {
-            text-decoration: none;
-            color: var(--white);
-            font-size: 0.9rem;
-            border: 1px solid var(--white);
-            padding: 5px 15px;
-            border-radius: 20px;
-            transition: 0.3s;
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+        .nav-links li { position: relative; }
+        .nav-links a { text-decoration: none; color: var(--white); display: block; transition: transform 0.3s ease, color 0.3s ease; }
+        .nav-links a .ja { display: block; font-size: 0.85rem; font-weight: bold; text-align: center; }
+        .nav-links a .en { display: block; font-size: 0.6rem; opacity: 0.7; text-transform: uppercase; text-align: center; }
+
+        /* ホバーアニメーション */
+        .nav-links a:hover { color: var(--scout-yellow); transform: scale(1.1); }
+        .nav-links a::after {
+            content: ""; position: absolute; bottom: -5px; left: 50%; width: 0; height: 2px;
+            background: var(--scout-yellow); transition: all 0.3s ease; transform: translateX(-50%);
         }
+        .nav-links a:hover::after { width: 100%; }
 
-        .back-link:hover {
-            background: var(--white);
-            color: var(--scout-green);
+        /* ハンバーガーボタン */
+        .hamburger {
+            display: none; cursor: pointer; z-index: 1100; background: none; border: none;
+            width: 30px; height: 30px; position: relative; padding: 0; margin-left: auto;
         }
+        .hamburger span {
+            display: block; position: absolute; left: 0; width: 30px; height: 3px;
+            background: var(--white); border-radius: 3px; transition: all 0.4s ease;
+        }
+        .hamburger span:nth-child(1) { top: 4px; }
+        .hamburger span:nth-child(2) { top: 14px; }
+        .hamburger span:nth-child(3) { top: 24px; }
+        .hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+        .hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
-        /* メインコンテンツ */
-        .container {
+        /* --- 3. メインコンテンツ用スタイル --- */
+        .main-content {
             max-width: 800px;
-            margin: 40px auto;
+            margin: 140px auto 60px; /* ヘッダー分を開ける */
             padding: 0 20px;
         }
 
@@ -71,77 +89,45 @@
             margin-bottom: 40px;
         }
 
-        h2 {
-            font-size: 1.3rem;
-            color: var(--scout-green);
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        h2 { font-size: 1.3rem; color: var(--scout-green); margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        h2::before { content: "●"; color: var(--scout-yellow); }
 
-        h2::before {
-            content: "●";
-            color: var(--scout-yellow);
-        }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+        th { background-color: #f9f9f9; width: 60%; font-size: 0.9rem; }
+        .price { text-align: right; font-weight: bold; }
 
-        /* テーブル設定 */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        th, td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f9f9f9;
-            width: 60%;
-        }
-
-        .price {
-            text-align: right;
-            font-weight: bold;
-        }
-
-        /* 合計金額デザイン */
         .total-box {
-            background: #fff9db;
-            border: 2px solid var(--scout-yellow);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: right;
-            margin-top: 10px;
+            background: #fff9db; border: 2px solid var(--scout-yellow);
+            padding: 20px; border-radius: 10px; text-align: right; margin-top: 10px;
         }
+        .total-label { font-size: 0.9rem; color: #666; }
+        .total-amount { font-size: 1.8rem; color: var(--scout-green); font-weight: bold; margin-left: 10px; }
+        .note { font-size: 0.85rem; color: #777; margin-top: 15px; line-height: 1.8; }
 
-        .total-label {
-            font-size: 0.9rem;
-            color: #666;
-        }
+        /* --- 4. レスポンシブ --- */
+        @media (max-width: 768px) {
+            header { padding: 0 15px; }
+            .hamburger { display: block; } 
+            
+            .nav-links {
+                position: fixed; right: -100%; top: 0; width: 100%; height: 100vh;
+                background: var(--scout-green); flex-direction: column;
+                align-items: center; justify-content: center; transition: 0.5s ease-in-out;
+                z-index: 1050; gap: 40px;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a:hover { transform: scale(1.2); }
+            .nav-links a::after { display: none; }
+            .nav-links a .ja { font-size: 1.4rem; }
+            .nav-links a .en { font-size: 0.9rem; }
 
-        .total-amount {
-            font-size: 1.8rem;
-            color: var(--scout-green);
-            font-weight: bold;
-            margin-left: 10px;
-        }
-
-        .note {
-            font-size: 0.85rem;
-            color: #777;
-            margin-top: 15px;
-        }
-
-        /* レスポンシブ */
-        @media (max-width: 600px) {
-            header { padding: 15px 20px; }
-            .container { margin: 20px auto; }
+            .main-content { margin-top: 110px; }
             .total-amount { font-size: 1.5rem; }
+            th { width: 50%; font-size: 0.85rem; }
         }
+
+        footer { text-align: center; padding: 60px; background: #333; color: #999; }
     </style>
 </head>
 <body>
@@ -149,11 +135,24 @@
     <header>
         <a href="index.html" class="logo">
             <span class="main-name">ボーイスカウト名取第一団</span>
+            <span class="sub-name">Boy Scouts Natori 1st Group</span>
         </a>
-        <a href="index.html" class="back-link">← 戻る</a>
+
+        <button class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="about.html"><span class="ja">ボーイスカウトってなに？</span><span class="en">About</span></a></li>
+                <li><a href="fee.html"><span class="ja">費用について</span><span class="en">Fees</span></a></li>
+                <li><a href="#"><span class="ja">年間活動計画</span><span class="en">Schedule</span></a></li>
+                <li><a href="#"><span class="ja">お問い合わせ</span><span class="en">Contact</span></a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="container">
+    <div class="main-content">
         <h1>費用について</h1>
 
         <div class="fee-section">
@@ -200,14 +199,30 @@
                 <span class="total-label">次年度以降 合計金額（年間）:</span>
                 <span class="total-amount">¥18,600</span>
             </div>
-            <p class="note">※団費は月々¥1,000ずつの積み立てとして計算しています。<br>※キャンプ等の大きなイベント時は、別途実費（交通費・食費など）を徴収する場合があります。</p>
+            <p class="note">
+                ※団費は月々¥1,000ずつの積み立てとして計算しています。<br>
+                ※キャンプ等の大きなイベント時は、別途実費（交通費・食費など）を徴収する場合があります。
+            </p>
         </div>
-
     </div>
 
-    <footer style="text-align: center; padding: 40px; color: #999; font-size: 0.8rem;">
-        &copy; 2026 ボーイスカウト名取第一団
-    </footer>
+    <footer><p>&copy; 2026 ボーイスカウト名取第一団</p></footer>
 
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
