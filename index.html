@@ -23,8 +23,8 @@
         }
 
         /* 改行コントロール用クラス */
-        .sp-only { display: none; }
-        .pc-only { display: inline; }
+        .sp-br { display: none; } /* デフォルト（PC）では隠す */
+        .pc-br { display: inline; } /* デフォルト（PC）で表示 */
 
         /* --- 2. ヘッダー --- */
         header {
@@ -128,8 +128,11 @@
         @media (max-width: 768px) {
             header { padding: 0 15px; }
             .hamburger { display: block; } 
-            .sp-only { display: inline; }
-            .pc-only { display: none; }
+            
+            /* スマホ版でのみ改行を有効にし、PC版の改行を無効化 */
+            .sp-br { display: inline; }
+            .pc-br { display: none; }
+
             .nav-links {
                 position: fixed; right: -100%; top: 0; width: 100%; height: 100vh;
                 background: var(--scout-green); flex-direction: column;
@@ -137,8 +140,6 @@
                 z-index: 1050; gap: 40px;
             }
             .nav-links.active { right: 0; }
-            .nav-links a:hover { transform: scale(1.2); }
-            .nav-links a::after { display: none; }
             .nav-links a .ja { font-size: 1.4rem; }
             .nav-links a .en { font-size: 0.9rem; }
             .animated-text { font-size: 1.25rem; }
@@ -148,11 +149,19 @@
 
         /* --- 9. フッター --- */
         footer {
-            text-align: center; padding: 60px 20px; background: #333; color: #ccc; margin-top: 100px;
+            text-align: center;
+            padding: 60px 20px;
+            background: #333;
+            color: #ccc;
+            margin-top: 100px;
         }
         footer .copyright { margin-bottom: 20px; color: #999; }
         footer .disclaimer {
-            max-width: 800px; margin: 0 auto; font-size: 0.75rem; line-height: 1.8; color: #aaa;
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 0.75rem;
+            line-height: 1.8;
+            color: #aaa;
         }
         footer .disclaimer a { color: var(--scout-yellow); text-decoration: underline; }
     </style>
@@ -191,8 +200,8 @@
             <span class="welcome-tag">JOIN US!</span>
             <h2 class="welcome-text">体験・見学、歓迎します！</h2>
             <p>
-                名取の自然の中で、新しい冒険を<br class="sp-only">一緒に始めませんか？<br>
-                ぜひ見学・体験に<br class="sp-only">いらしてください！
+                名取の自然の中で、新しい冒険を<br class="pc-br">一緒に始めませんか？<br class="sp-br">
+                ぜひ見学・体験に<br class="pc-br">いらしてください！
             </p>
         </div>
     </div>
@@ -222,10 +231,10 @@
     <footer>
         <div class="copyright">&copy; 2026 ボーイスカウト名取第一団</div>
         <div class="disclaimer">
-            このホームページ上のスカウト運動に関する事項は、<br class="pc-only"><br class="sp-only">
-            ボーイスカウト日本連盟ホームページ掲載<br class="pc-only"><br class="sp-only">
-            「<a href="https://www.scout.or.jp/member/site-open" target="_blank">ボーイスカウト関係のホームページ開設</a>」に沿って、<br class="pc-only"><br class="sp-only">
-            「ボーイスカウト名取１団事務局」責任のもとに<br class="sp-only">
+            このホームページ上のスカウト運動に関する事項は、<br class="sp-br">
+            ボーイスカウト日本連盟ホームページ掲載<br class="pc-br"><br class="sp-br">
+            「<a href="https://www.scout.or.jp/member/site-open" target="_blank">ボーイスカウト関係のホームページ開設</a>」に沿って、<br class="pc-br"><br class="sp-br">
+            「ボーイスカウト名取１団事務局」責任のもとに<br class="sp-br">
             掲載しています。
         </div>
     </footer>
