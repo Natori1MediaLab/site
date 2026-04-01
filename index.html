@@ -24,6 +24,7 @@
 
         /* 改行コントロール用クラス */
         .sp-only { display: none; }
+        .pc-only { display: inline; }
 
         /* --- 2. ヘッダー --- */
         header {
@@ -128,6 +129,7 @@
             header { padding: 0 15px; }
             .hamburger { display: block; } 
             .sp-only { display: inline; }
+            .pc-only { display: none; }
             .nav-links {
                 position: fixed; right: -100%; top: 0; width: 100%; height: 100vh;
                 background: var(--scout-green); flex-direction: column;
@@ -144,7 +146,7 @@
             .card .ja { white-space: normal; font-size: 1.2rem; }
         }
 
-        /* --- 9. フッター（免責事項追加） --- */
+        /* --- 9. フッター --- */
         footer {
             text-align: center;
             padding: 60px 20px;
@@ -235,8 +237,9 @@
     <footer>
         <div class="copyright">&copy; 2026 ボーイスカウト名取第一団</div>
         <div class="disclaimer">
-            このホームページ上のスカウト運動に関する事項は、ボーイスカウト日本連盟ホームページ掲載<br class="sp-only">
-            「<a href="https://www.scout.or.jp/member/site-open" target="_blank">ボーイスカウト関係のホームページ開設</a>」に沿って、<br class="sp-only">
+            このホームページ上のスカウト運動に関する事項は、<br class="sp-only">
+            ボーイスカウト日本連盟ホームページ掲載<br class="sp-only">
+            「<a href="https://www.scout.or.jp/member/site-open" target="_blank">ボーイスカウト関係のホームページ開設</a>」に沿って、<br class="pc-only"><br class="sp-only">
             「ボーイスカウト名取１団事務局」責任のもとに掲載しています。
         </div>
     </footer>
