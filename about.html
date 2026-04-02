@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ボーイスカウトってなに？ | ボーイスカウト名取第1団</title>
+    <title>ボーイスカウトってなに？ - ボーイスカウト名取第一団</title>
     
     <style>
         /* --- 1. 基本設定（共通） --- */
@@ -23,11 +23,7 @@
             overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* 改行コントロール */
-        .sp-br { display: none; }
-        .pc-br { display: inline; }
-
-        /* --- 2. ヘッダー（共通最新版） --- */
+        /* --- 2. ヘッダー（共通） --- */
         header {
             position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
@@ -54,6 +50,7 @@
         }
         .nav-links a:hover::after { width: 100%; }
 
+        /* ハンバーガーボタン */
         .hamburger {
             display: none; cursor: pointer; z-index: 1100; background: none; border: none;
             width: 30px; height: 30px; position: relative; padding: 0; margin-left: auto;
@@ -69,7 +66,7 @@
         .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
         .hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
-        /* --- 3. メインコンテンツ --- */
+        /* --- 3. メインコンテンツ用スタイル --- */
         .main-content {
             max-width: 800px;
             margin: 140px auto 60px;
@@ -97,7 +94,6 @@
             margin-top: 0;
             border-bottom: 2px solid #eee;
             padding-bottom: 10px;
-            margin-bottom: 15px;
         }
 
         .unit-grid {
@@ -112,7 +108,6 @@
             padding: 20px;
             border-radius: 10px;
             text-align: center;
-            border: 1px solid #eee;
         }
 
         .unit-name {
@@ -132,8 +127,6 @@
         @media (max-width: 768px) {
             header { padding: 0 15px; }
             .hamburger { display: block; } 
-            .sp-br { display: inline; }
-            .pc-br { display: none; }
             
             .nav-links {
                 position: fixed; right: -100%; top: 0; width: 100%; height: 100vh;
@@ -148,30 +141,14 @@
             .main-content { margin-top: 110px; }
         }
 
-        /* --- 5. フッター（共通最新版） --- */
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            background: #333;
-            color: #ccc;
-            margin-top: 100px;
-        }
-        footer .copyright { margin-bottom: 20px; color: #999; }
-        footer .disclaimer {
-            max-width: 900px;
-            margin: 0 auto;
-            font-size: 0.75rem;
-            line-height: 1.8;
-            color: #aaa;
-        }
-        footer .disclaimer a { color: var(--scout-yellow); text-decoration: underline; }
+        footer { text-align: center; padding: 60px; background: #333; color: #999; }
     </style>
 </head>
 <body>
 
     <header>
         <a href="index.html" class="logo">
-            <span class="main-name">ボーイスカウト名取第1団</span>
+            <span class="main-name">ボーイスカウト名取第一団</span>
             <span class="sub-name">Boy Scouts Natori 1st Group</span>
         </a>
 
@@ -184,7 +161,7 @@
                 <li><a href="about.html"><span class="ja">ボーイスカウトってなに？</span><span class="en">About</span></a></li>
                 <li><a href="fee.html"><span class="ja">費用について</span><span class="en">Fees</span></a></li>
                 <li><a href="#"><span class="ja">年間活動計画</span><span class="en">Schedule</span></a></li>
-                <li><a href="https://find-local.scout.or.jp/miyagi/natori1-contact/" target="_blank"><span class="ja">お問い合わせ</span><span class="en">Contact</span></a></li>
+                <li><a href="#"><span class="ja">お問い合わせ</span><span class="en">Contact</span></a></li>
             </ul>
         </nav>
     </header>
@@ -226,21 +203,12 @@
         </div>
 
         <div class="about-card">
-            <h2>名取第1団のモットー</h2>
+            <h2>名取第一団のモットー</h2>
             <p>私たちは名取市を中心に、地域の自然を舞台に活動しています。「明るく、元気に、たくましく」をモットーに、日々新しいことに挑戦しています。</p>
         </div>
     </div>
 
-    <footer>
-        <div class="copyright">&copy; 2026 ボーイスカウト名取第1団</div>
-        <div class="disclaimer">
-            このホームページ上のスカウト運動に関する事項は、<br class="sp-br">
-            ボーイスカウト日本連盟ホームページ掲載<br class="pc-br"><br class="sp-br">
-            「<a href="https://www.scout.or.jp/member/site-open" target="_blank">ボーイスカウト関係のホームページ開設</a>」に沿って、<br class="pc-br"><br class="sp-br">
-            「ボーイスカウト名取1団事務局」責任のもとに<br class="sp-br">
-            掲載しています。
-        </div>
-    </footer>
+    <footer><p>&copy; 2026 ボーイスカウト名取第一団</p></footer>
 
     <script>
         const hamburger = document.getElementById('hamburger');
