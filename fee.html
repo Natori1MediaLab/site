@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>費用について - ボーイスカウト名取第一団</title>
+    <title>費用について | ボーイスカウト名取第1団</title>
     
     <style>
         /* --- 1. 基本設定（共通） --- */
@@ -20,10 +20,14 @@
             font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Meiryo", sans-serif;
             background-color: var(--bg-light);
             color: var(--text-dark);
-            overflow-x: hidden; scroll-behavior: smooth;
+            line-height: 1.8;
         }
 
-        /* --- 2. ヘッダー（indexと共通化） --- */
+        /* 改行コントロール */
+        .sp-br { display: none; }
+        .pc-br { display: inline; }
+
+        /* --- 2. ヘッダー（共通） --- */
         header {
             position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
@@ -32,196 +36,209 @@
             color: var(--white); backdrop-filter: blur(5px);
         }
 
-        .logo { text-decoration: none; color: var(--white); z-index: 1100; flex-shrink: 0; transition: transform 0.3s ease; }
-        .logo:hover { transform: scale(1.02); }
+        .logo { text-decoration: none; color: var(--white); flex-shrink: 0; }
         .logo .main-name { font-size: 1.1rem; font-weight: bold; display: block; }
         .logo .sub-name { font-size: 0.7rem; opacity: 0.8; }
 
         .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
-        .nav-links li { position: relative; }
-        .nav-links a { text-decoration: none; color: var(--white); display: block; transition: transform 0.3s ease, color 0.3s ease; }
-        .nav-links a .ja { display: block; font-size: 0.85rem; font-weight: bold; text-align: center; }
-        .nav-links a .en { display: block; font-size: 0.6rem; opacity: 0.7; text-transform: uppercase; text-align: center; }
+        .nav-links a { text-decoration: none; color: var(--white); text-align: center; display: block; transition: 0.3; }
+        .nav-links a .ja { display: block; font-size: 0.85rem; font-weight: bold; }
+        .nav-links a .en { display: block; font-size: 0.6rem; opacity: 0.7; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--scout-yellow); }
 
-        /* ホバーアニメーション */
-        .nav-links a:hover { color: var(--scout-yellow); transform: scale(1.1); }
-        .nav-links a::after {
-            content: ""; position: absolute; bottom: -5px; left: 50%; width: 0; height: 2px;
-            background: var(--scout-yellow); transition: all 0.3s ease; transform: translateX(-50%);
-        }
-        .nav-links a:hover::after { width: 100%; }
-
-        /* ハンバーガーボタン */
-        .hamburger {
-            display: none; cursor: pointer; z-index: 1100; background: none; border: none;
-            width: 30px; height: 30px; position: relative; padding: 0; margin-left: auto;
-        }
-        .hamburger span {
-            display: block; position: absolute; left: 0; width: 30px; height: 3px;
-            background: var(--white); border-radius: 3px; transition: all 0.4s ease;
-        }
+        .hamburger { display: none; cursor: pointer; background: none; border: none; width: 30px; height: 30px; position: relative; }
+        .hamburger span { display: block; position: absolute; width: 100%; height: 3px; background: var(--white); transition: 0.4s; }
         .hamburger span:nth-child(1) { top: 4px; }
         .hamburger span:nth-child(2) { top: 14px; }
         .hamburger span:nth-child(3) { top: 24px; }
         .hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
-        .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
-        /* --- 3. メインコンテンツ用スタイル --- */
-        .main-content {
-            max-width: 800px;
-            margin: 140px auto 60px; /* ヘッダー分を開ける */
-            padding: 0 20px;
+        /* --- 3. メインコンテンツ --- */
+        .page-header {
+            background: var(--scout-green);
+            color: var(--white);
+            padding: 140px 20px 60px;
+            text-align: center;
         }
 
-        h1 {
+        .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+
+        .section { margin-bottom: 60px; }
+        h2 {
             color: var(--scout-green);
-            border-left: 6px solid var(--scout-yellow);
+            border-left: 5px solid var(--scout-yellow);
             padding-left: 15px;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+
+        .fee-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             margin-bottom: 30px;
         }
 
-        .fee-section {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
+        .fee-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px dashed #ddd;
+            padding: 10px 0;
+            margin-bottom: 10px;
         }
+        .fee-item:last-child { border-bottom: none; }
+        .fee-label { font-weight: bold; color: var(--scout-green); }
+        .fee-price { font-size: 1.2rem; font-weight: bold; color: #e67e22; }
 
-        h2 { font-size: 1.3rem; color: var(--scout-green); margin-top: 0; display: flex; align-items: center; gap: 10px; }
-        h2::before { content: "●"; color: var(--scout-yellow); }
-
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
-        th { background-color: #f9f9f9; width: 60%; font-size: 0.9rem; }
-        .price { text-align: right; font-weight: bold; }
-
-        .total-box {
-            background: #fff9db; border: 2px solid var(--scout-yellow);
-            padding: 20px; border-radius: 10px; text-align: right; margin-top: 10px;
+        .note {
+            font-size: 0.85rem;
+            color: #666;
+            background: #eee;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
         }
-        .total-label { font-size: 0.9rem; color: #666; }
-        .total-amount { font-size: 1.8rem; color: var(--scout-green); font-weight: bold; margin-left: 10px; }
-        .note { font-size: 0.85rem; color: #777; margin-top: 15px; line-height: 1.8; }
 
         /* --- 4. レスポンシブ --- */
         @media (max-width: 768px) {
             header { padding: 0 15px; }
-            .hamburger { display: block; } 
-            
+            .hamburger { display: block; }
+            .sp-br { display: inline; }
+            .pc-br { display: none; }
+
             .nav-links {
                 position: fixed; right: -100%; top: 0; width: 100%; height: 100vh;
                 background: var(--scout-green); flex-direction: column;
-                align-items: center; justify-content: center; transition: 0.5s ease-in-out;
-                z-index: 1050; gap: 40px;
+                align-items: center; justify-content: center; transition: 0.5s;
+                gap: 40px;
             }
             .nav-links.active { right: 0; }
-            .nav-links a:hover { transform: scale(1.2); }
-            .nav-links a::after { display: none; }
-            .nav-links a .ja { font-size: 1.4rem; }
-            .nav-links a .en { font-size: 0.9rem; }
-
-            .main-content { margin-top: 110px; }
-            .total-amount { font-size: 1.5rem; }
-            th { width: 50%; font-size: 0.85rem; }
+            .fee-item { flex-direction: column; align-items: flex-start; }
+            .fee-price { align-self: flex-end; }
         }
 
-        footer { text-align: center; padding: 60px; background: #333; color: #999; }
+        /* --- 5. フッター（共通） --- */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: #333;
+            color: #ccc;
+            margin-top: 100px;
+        }
+        footer .copyright { margin-bottom: 20px; color: #999; }
+        footer .disclaimer {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 0.75rem;
+            line-height: 1.8;
+            color: #aaa;
+        }
+        footer .disclaimer a { color: var(--scout-yellow); text-decoration: underline; }
     </style>
 </head>
 <body>
 
     <header>
         <a href="index.html" class="logo">
-            <span class="main-name">ボーイスカウト名取第一団</span>
+            <span class="main-name">ボーイスカウト名取第1団</span>
             <span class="sub-name">Boy Scouts Natori 1st Group</span>
         </a>
-
-        <button class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
-        </button>
-
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
         <nav>
             <ul class="nav-links" id="nav-menu">
                 <li><a href="about.html"><span class="ja">ボーイスカウトってなに？</span><span class="en">About</span></a></li>
                 <li><a href="fee.html"><span class="ja">費用について</span><span class="en">Fees</span></a></li>
                 <li><a href="#"><span class="ja">年間活動計画</span><span class="en">Schedule</span></a></li>
-                <li><a href="#"><span class="ja">お問い合わせ</span><span class="en">Contact</span></a></li>
+                <li><a href="https://find-local.scout.or.jp/miyagi/natori1-contact/" target="_blank"><span class="ja">お問い合わせ</span><span class="en">Contact</span></a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="main-content">
+    <div class="page-header">
         <h1>費用について</h1>
-
-        <div class="fee-section">
-            <h2>入団時（初年度）にかかる費用</h2>
-            <p>新しく活動を始める際、最初にかかる費用です。</p>
-            <table>
-                <tr>
-                    <th>入団金（事務手数料など）</th>
-                    <td class="price">¥2,000</td>
-                </tr>
-                <tr>
-                    <th>加盟登録費（年間）</th>
-                    <td class="price">¥6,600</td>
-                </tr>
-                <tr>
-                    <th>団費（活動運営費 / 年間）</th>
-                    <td class="price">¥12,000</td>
-                </tr>
-                <tr>
-                    <th>制服・備品代（概算）</th>
-                    <td class="price">¥10,000</td>
-                </tr>
-            </table>
-            <div class="total-box">
-                <span class="total-label">初年度 合計金額目安:</span>
-                <span class="total-amount">¥30,600</span>
-            </div>
-        </div>
-
-        <div class="fee-section">
-            <h2>2年目から継続してかかる費用</h2>
-            <p>入団金や制服代が不要になるため、負担が少なくなります。</p>
-            <table>
-                <tr>
-                    <th>加盟登録費（年間）</th>
-                    <td class="price">¥6,600</td>
-                </tr>
-                <tr>
-                    <th>団費（活動運営費 / 年間）</th>
-                    <td class="price">¥12,000</td>
-                </tr>
-            </table>
-            <div class="total-box">
-                <span class="total-label">次年度以降 合計金額（年間）:</span>
-                <span class="total-amount">¥18,600</span>
-            </div>
-            <p class="note">
-                ※団費は月々¥1,000ずつの積み立てとして計算しています。<br>
-                ※キャンプ等の大きなイベント時は、別途実費（交通費・食費など）を徴収する場合があります。
-            </p>
-        </div>
+        <p>活動にかかる費用をご案内します</p>
     </div>
 
-    <footer><p>&copy; 2026 ボーイスカウト名取第一団</p></footer>
+    <div class="container">
+        
+        <div class="section">
+            <h2>入団時にかかる費用</h2>
+            <div class="fee-card">
+                <div class="fee-item">
+                    <span class="fee-label">入団金</span>
+                    <span class="fee-price">2,000円</span>
+                </div>
+                <div class="fee-item">
+                    <span class="fee-label">日本連盟登録料（年額）</span>
+                    <span class="fee-price">6,600円</span>
+                </div>
+                <p class="note">※登録料は年度（4月〜翌3月）ごとの更新となります。<br>※途中入団の場合は月割り計算となる場合があります。</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>継続的にかかる費用</h2>
+            <div class="fee-card">
+                <div class="fee-item">
+                    <span class="fee-label">育成会費（団費 / 月額）</span>
+                    <span class="fee-price">2,000円</span>
+                </div>
+                <div class="fee-item">
+                    <span class="fee-label">隊活動費（月額）</span>
+                    <span class="fee-price">500円〜1,000円程度</span>
+                </div>
+                <p class="note">
+                    育成会費は、団の運営や用具の維持管理に使用されます。<br>
+                    隊活動費は、各隊の集会での材料費などに充てられます。<br>
+                    ※金額は所属する隊によって多少前後する場合があります。
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>その他の費用</h2>
+            <div class="fee-card">
+                <div class="fee-item">
+                    <span class="fee-label">制服・個人装備</span>
+                    <span class="fee-price">実費</span>
+                </div>
+                <div class="fee-item">
+                    <span class="fee-label">キャンプ・遠征費</span>
+                    <span class="fee-price">その都度徴収</span>
+                </div>
+                <p class="note">
+                    夏キャンプなどの宿泊行事や、交通費が伴う遠征の際は、実費相当分を別途ご負担いただく形となります。
+                </p>
+            </div>
+        </div>
+
+        <div class="section" style="text-align: center; margin-top: 40px;">
+            <p>※詳しい金額設定については、見学・体験時に資料にてご説明させていただきます。</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="copyright">&copy; 2026 ボーイスカウト名取第1団</div>
+        <div class="disclaimer">
+            このホームページ上のスカウト運動に関する事項は、<br class="sp-br">
+            ボーイスカウト日本連盟ホームページ掲載<br class="pc-br"><br class="sp-br">
+            「<a href="https://www.scout.or.jp/member/site-open" target="_blank">ボーイスカウト関係のホームページ開設</a>」に沿って、<br class="pc-br"><br class="sp-br">
+            「ボーイスカウト名取1団事務局」責任のもとに<br class="sp-br">
+            掲載しています。
+        </div>
+    </footer>
 
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
-
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
         });
     </script>
 </body>
