@@ -6,7 +6,7 @@
     <title>ボーイスカウトってなに？ | ボーイスカウト名取第1団</title>
     
     <style>
-        /* --- 1. 基本設定（index.htmlと共通） --- */
+        /* --- 1. 基本設定（共通） --- */
         :root {
             --scout-green: #2e5a27;
             --scout-yellow: #f4d03f;
@@ -55,7 +55,7 @@
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
-        /* --- 3. メインコンテンツ --- */
+        /* --- 3. メインコンテンツ（以前のレイアウト） --- */
         .page-header {
             background: var(--scout-green);
             color: var(--white);
@@ -81,7 +81,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        /* 隊の紹介テーブル */
+        /* 対象年齢テーブル */
         .unit-table {
             width: 100%;
             border-collapse: collapse;
@@ -89,6 +89,7 @@
             background: var(--white);
             border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         .unit-table th, .unit-table td {
             padding: 20px;
@@ -115,7 +116,9 @@
                 gap: 40px;
             }
             .nav-links.active { right: 0; }
-            .unit-table th, .unit-table td { display: block; width: 100%; }
+            
+            /* テーブルのレスポンシブ */
+            .unit-table th, .unit-table td { display: block; width: 100%; box-sizing: border-box;}
             .unit-table th { border-bottom: none; padding-bottom: 5px; }
         }
 
@@ -158,20 +161,19 @@
 
     <div class="page-header">
         <h1>ボーイスカウトってなに？</h1>
-        <p>Scouting is an adventure for life.</p>
+        <p>「自立心のある健全な青少年」を育てる教育運動</p>
     </div>
 
     <div class="container">
         <div class="section">
-            <h2>ボーイスカウト教育とは</h2>
+            <h2>ボーイスカウトとは</h2>
             <div class="intro-box">
                 <p>
-                    ボーイスカウトは、1907年にイギリスで始まった青少年教育活動です。<br>
-                    現在では世界170以上の国と地域、約5,700万人が参加する世界最大の青少年運動となっています。
+                    ボーイスカウトは、仲間たちと自然の中で楽しみながら学び、自立心、協調性、そしてリーダーシップを育む教育プログラムです。<br class="pc-br">
+                    キャンプ、ハイキング、ボランティア活動など、普段の学校生活では体験できない「ワクワクする冒険」が待っています！
                 </p>
                 <p>
-                    野外活動（キャンプやハイキング）を中心に、自分たちで計画を立て、実行するプロセスを通じて、<br class="pc-br">
-                    <strong>「自立心」「協調性」「リーダーシップ」「奉仕の心」</strong>を育みます。
+                    活動は、イギリスの創始者ロバート・ベーデン＝パウエル卿が提唱した「スカウトの誓い・おきて」に基づき、世界中の仲間たちと共通の理念を持って行われています。
                 </p>
             </div>
         </div>
@@ -181,13 +183,14 @@
             <div class="intro-box">
                 <p>
                     私たち名取第1団は、宮城県名取市を拠点に活動しています。<br>
-                    地域の自然をフィールドに、異年齢の子供たちが交流しながら楽しく活動しています。
+                    「明るく、元気に、たくましく」をモットーに、地域の自然をフィールドに活動しており、子供たちがのびのびと成長できるよう、地域のボランティア指導者たちが活動を支えています。
                 </p>
             </div>
         </div>
 
         <div class="section">
             <h2>対象年齢と隊の構成</h2>
+            <p>お子様の成長（学年）に合わせて、5つの段階に分かれて活動しています。男の子も女の子も参加できます。</p>
             <table class="unit-table">
                 <tr>
                     <th>ビーバースカウト</th>
@@ -203,7 +206,7 @@
                 </tr>
                 <tr>
                     <th>ベンチャースカウト</th>
-                    <td>高校生年代</td>
+                    <td>高校生年代（中学3年生の9月〜）</td>
                 </tr>
                 <tr>
                     <th>ローバースカウト</th>
