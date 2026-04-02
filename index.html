@@ -71,7 +71,8 @@
 
         /* --- 4. スライドショー --- */
         .slider-container { width: 100%; height: 55vh; overflow: hidden; position: relative; margin-top: 80px; background: #eee; }
-        .slider-track { display: flex; width: calc(400px * 10); animation: scroll 40s linear infinite; }
+        /* アニメーション時間を 40s -> 25s に短縮して高速化 */
+        .slider-track { display: flex; width: calc(400px * 10); animation: scroll 25s linear infinite; }
         .slider-track img { width: 400px; height: 55vh; object-fit: cover; flex-shrink: 0; border-right: 4px solid var(--white); }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-400px * 5)); } }
 
