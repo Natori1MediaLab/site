@@ -20,14 +20,14 @@
             font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Meiryo", sans-serif;
             background-color: var(--bg-light);
             color: var(--text-dark);
-            line-height: 1.8;
+            overflow-x: hidden; scroll-behavior: smooth;
         }
 
         /* 改行コントロール */
         .sp-br { display: none; }
         .pc-br { display: inline; }
 
-        /* --- 2. ヘッダー（共通） --- */
+        /* --- 2. ヘッダー（共通最新版） --- */
         header {
             position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
@@ -36,90 +36,100 @@
             color: var(--white); backdrop-filter: blur(5px);
         }
 
-        .logo { text-decoration: none; color: var(--white); flex-shrink: 0; }
+        .logo { text-decoration: none; color: var(--white); z-index: 1100; flex-shrink: 0; transition: transform 0.3s ease; }
+        .logo:hover { transform: scale(1.02); }
         .logo .main-name { font-size: 1.1rem; font-weight: bold; display: block; }
         .logo .sub-name { font-size: 0.7rem; opacity: 0.8; }
 
         .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
-        .nav-links a { text-decoration: none; color: var(--white); text-align: center; display: block; transition: 0.3s; }
-        .nav-links a .ja { display: block; font-size: 0.85rem; font-weight: bold; }
-        .nav-links a .en { display: block; font-size: 0.6rem; opacity: 0.7; text-transform: uppercase; }
-        .nav-links a:hover { color: var(--scout-yellow); }
+        .nav-links li { position: relative; }
+        .nav-links a { text-decoration: none; color: var(--white); display: block; transition: transform 0.3s ease, color 0.3s ease; }
+        .nav-links a .ja { display: block; font-size: 0.85rem; font-weight: bold; text-align: center; }
+        .nav-links a .en { display: block; font-size: 0.6rem; opacity: 0.7; text-transform: uppercase; text-align: center; }
 
-        .hamburger { display: none; cursor: pointer; background: none; border: none; width: 30px; height: 30px; position: relative; }
-        .hamburger span { display: block; position: absolute; width: 100%; height: 3px; background: var(--white); transition: 0.4s; }
+        .nav-links a:hover { color: var(--scout-yellow); transform: scale(1.1); }
+        .nav-links a::after {
+            content: ""; position: absolute; bottom: -5px; left: 50%; width: 0; height: 2px;
+            background: var(--scout-yellow); transition: all 0.3s ease; transform: translateX(-50%);
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        .hamburger {
+            display: none; cursor: pointer; z-index: 1100; background: none; border: none;
+            width: 30px; height: 30px; position: relative; padding: 0; margin-left: auto;
+        }
+        .hamburger span {
+            display: block; position: absolute; left: 0; width: 30px; height: 3px;
+            background: var(--white); border-radius: 3px; transition: all 0.4s ease;
+        }
         .hamburger span:nth-child(1) { top: 4px; }
         .hamburger span:nth-child(2) { top: 14px; }
         .hamburger span:nth-child(3) { top: 24px; }
         .hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
         .hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
         /* --- 3. メインコンテンツ --- */
-        .page-header {
-            background: var(--scout-green);
-            color: var(--white);
-            padding: 140px 20px 60px;
-            text-align: center;
+        .main-content {
+            max-width: 800px;
+            margin: 140px auto 60px;
+            padding: 0 20px;
         }
 
-        .container { max-width: 900px; margin: 60px auto; padding: 0 20px; }
-
-        .section { margin-bottom: 60px; }
-        h2 {
+        h1 {
             color: var(--scout-green);
-            border-left: 5px solid var(--scout-yellow);
+            border-left: 6px solid var(--scout-yellow);
             padding-left: 15px;
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-        }
-
-        .fee-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             margin-bottom: 30px;
         }
 
-        .fee-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px dashed #ddd;
-            padding: 15px 0;
+        .fee-section {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
         }
-        .fee-item:last-child { border-bottom: none; }
-        .fee-name { font-weight: bold; color: var(--scout-green); }
-        .fee-price { font-size: 1.2rem; font-weight: bold; }
 
-        .note-box {
-            background: #fff9db;
-            padding: 20px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            margin-top: 20px;
+        h2 { font-size: 1.3rem; color: var(--scout-green); margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        h2::before { content: "●"; color: var(--scout-yellow); }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+        th { background-color: #f9f9f9; width: 60%; font-size: 0.9rem; }
+        .price { text-align: right; font-weight: bold; }
+
+        .total-box {
+            background: #fff9db; border: 2px solid var(--scout-yellow);
+            padding: 20px; border-radius: 10px; text-align: right; margin-top: 10px;
         }
+        .total-label { font-size: 0.9rem; color: #666; }
+        .total-amount { font-size: 1.8rem; color: var(--scout-green); font-weight: bold; margin-left: 10px; }
+        .note { font-size: 0.85rem; color: #777; margin-top: 15px; line-height: 1.8; }
 
         /* --- 4. レスポンシブ --- */
         @media (max-width: 768px) {
             header { padding: 0 15px; }
-            .hamburger { display: block; }
+            .hamburger { display: block; } 
             .sp-br { display: inline; }
             .pc-br { display: none; }
-
+            
             .nav-links {
                 position: fixed; right: -100%; top: 0; width: 100%; height: 100vh;
                 background: var(--scout-green); flex-direction: column;
-                align-items: center; justify-content: center; transition: 0.5s;
-                gap: 40px;
+                align-items: center; justify-content: center; transition: 0.5s ease-in-out;
+                z-index: 1050; gap: 40px;
             }
             .nav-links.active { right: 0; }
-            .fee-item { flex-direction: column; align-items: flex-start; }
-            .fee-price { margin-top: 5px; color: var(--scout-green); }
+            .nav-links a .ja { font-size: 1.4rem; }
+            .nav-links a .en { font-size: 0.9rem; }
+
+            .main-content { margin-top: 110px; }
+            .total-amount { font-size: 1.5rem; }
+            th { width: 50%; font-size: 0.85rem; }
         }
 
-        /* --- 5. フッター（共通） --- */
+        /* --- 5. フッター（共通最新版） --- */
         footer {
             text-align: center;
             padding: 60px 20px;
@@ -156,54 +166,58 @@
         </nav>
     </header>
 
-    <div class="page-header">
+    <div class="main-content">
         <h1>費用について</h1>
-        <p>活動にかかる諸費用のご案内</p>
-    </div>
 
-    <div class="container">
-        
-        <div class="section">
-            <h2>入団時にかかる費用</h2>
-            <div class="fee-card">
-                <div class="fee-item">
-                    <span class="fee-name">入団金</span>
-                    <span class="fee-price">¥ 2,000</span>
-                </div>
-                <div class="fee-item">
-                    <span class="fee-name">スカウト登録料（年額）</span>
-                    <span class="fee-price">¥ 6,600</span>
-                </div>
-                <p style="font-size: 0.85rem; color: #666; margin-top: 10px;">※登録料は年度途中の入団の場合、月割り計算となります。</p>
+        <div class="fee-section">
+            <h2>入団時（初年度）にかかる費用</h2>
+            <p>新しく活動を始める際、最初にかかる費用です。</p>
+            <table>
+                <tr>
+                    <th>入団金（事務手数料など）</th>
+                    <td class="price">¥2,000</td>
+                </tr>
+                <tr>
+                    <th>加盟登録費（年間）</th>
+                    <td class="price">¥6,600</td>
+                </tr>
+                <tr>
+                    <th>団費（活動運営費 / 年間）</th>
+                    <td class="price">¥12,000</td>
+                </tr>
+                <tr>
+                    <th>制服・備品代（概算）</th>
+                    <td class="price">¥10,000</td>
+                </tr>
+            </table>
+            <div class="total-box">
+                <span class="total-label">初年度 合計金額目安:</span>
+                <span class="total-amount">¥30,600</span>
             </div>
         </div>
 
-        <div class="section">
-            <h2>継続的にかかる費用</h2>
-            <div class="fee-card">
-                <div class="fee-item">
-                    <span class="fee-name">団費（月額）</span>
-                    <span class="fee-price">¥ 1,500</span>
-                </div>
-                <div class="fee-item">
-                    <span class="fee-name">育成会費（月額・一世帯）</span>
-                    <span class="fee-price">¥ 1,000</span>
-                </div>
-                <div class="note-box">
-                    <strong>備考：</strong><br>
-                    キャンプや遠征などの大きなイベントの際は、別途参加費（実費程度）を集金する場合があります。
-                </div>
+        <div class="fee-section">
+            <h2>2年目から継続してかかる費用</h2>
+            <p>入団金や制服代が不要になるため、負担が少なくなります。</p>
+            <table>
+                <tr>
+                    <th>加盟登録費（年間）</th>
+                    <td class="price">¥6,600</td>
+                </tr>
+                <tr>
+                    <th>団費（活動運営費 / 年間）</th>
+                    <td class="price">¥12,000</td>
+                </tr>
+            </table>
+            <div class="total-box">
+                <span class="total-label">次年度以降 合計金額（年間）:</span>
+                <span class="total-amount">¥18,600</span>
             </div>
+            <p class="note">
+                ※団費は月々¥1,000ずつの積み立てとして計算しています。<br>
+                ※キャンプ等の大きなイベント時は、別途実費（交通費・食費など）を徴収する場合があります。
+            </p>
         </div>
-
-        <div class="section">
-            <h2>制服・備品について</h2>
-            <div class="fee-card">
-                <p>各隊ごとの制服、キャップ、教本などは個人購入となります。</p>
-                <p>団から貸与される備品や、お下がりの制服を利用できる場合もありますので、詳しくは見学時などにお気軽にご相談ください。</p>
-            </div>
-        </div>
-
     </div>
 
     <footer>
@@ -223,6 +237,12 @@
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
         });
     </script>
 </body>
