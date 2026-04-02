@@ -23,8 +23,8 @@
         }
 
         /* 改行コントロール用クラス */
-        .sp-br { display: none; } /* デフォルト（PC）では隠す */
-        .pc-br { display: inline; } /* デフォルト（PC）で表示 */
+        .sp-br { display: none; }
+        .pc-br { display: inline; }
 
         /* --- 2. ヘッダー --- */
         header {
@@ -128,8 +128,6 @@
         @media (max-width: 768px) {
             header { padding: 0 15px; }
             .hamburger { display: block; } 
-            
-            /* スマホ版でのみ改行を有効にし、PC版の改行を無効化 */
             .sp-br { display: inline; }
             .pc-br { display: none; }
 
@@ -209,14 +207,6 @@
     <div class="container" id="portal">
         <div class="section-title"><span class="ja">ポータルメニュー</span><span class="en">Portal Menu</span></div>
         <div class="portal-grid">
-            <a href="fee.html" class="card">
-                <span class="ja">費用について</span><span class="en">Fees & Costs</span>
-                <p>入団金や月々の会費、<br>活動にかかる費用をご案内します。</p>
-            </a>
-            <a href="#" class="card">
-                <span class="ja">年間活動計画</span><span class="en">Annual Schedule</span>
-                <p>キャンプや季節の行事、<br>1年の予定をチェック！</p>
-            </a>
             <a href="about.html" class="card">
                 <span class="ja">ボーイスカウトってなに？</span><span class="en">What is Scouting?</span>
                 <p>歴史や教育方針、<br>各隊の対象年齢について詳しく。</p>
@@ -224,6 +214,14 @@
             <a href="#" class="card">
                 <span class="ja">各隊のSNS</span><span class="en">Social Media</span>
                 <p>日々の元気な活動風景を、<br>写真や動画で配信中！</p>
+            </a>
+            <a href="#" class="card">
+                <span class="ja">年間活動計画</span><span class="en">Annual Schedule</span>
+                <p>キャンプや季節の行事、<br>1年の予定をチェック！</p>
+            </a>
+            <a href="fee.html" class="card">
+                <span class="ja">費用について</span><span class="en">Fees & Costs</span>
+                <p>入団金や月々の会費、<br>活動にかかる費用をご案内します。</p>
             </a>
         </div>
     </div>
