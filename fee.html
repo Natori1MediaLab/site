@@ -41,7 +41,7 @@
         .logo .sub-name { font-size: 0.7rem; opacity: 0.8; }
 
         .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
-        .nav-links a { text-decoration: none; color: var(--white); text-align: center; display: block; transition: 0.3; }
+        .nav-links a { text-decoration: none; color: var(--white); text-align: center; display: block; transition: 0.3s; }
         .nav-links a .ja { display: block; font-size: 0.85rem; font-weight: bold; }
         .nav-links a .en { display: block; font-size: 0.6rem; opacity: 0.7; text-transform: uppercase; }
         .nav-links a:hover { color: var(--scout-yellow); }
@@ -85,21 +85,19 @@
         .fee-item {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
             border-bottom: 1px dashed #ddd;
-            padding: 10px 0;
-            margin-bottom: 10px;
+            padding: 15px 0;
         }
         .fee-item:last-child { border-bottom: none; }
-        .fee-label { font-weight: bold; color: var(--scout-green); }
-        .fee-price { font-size: 1.2rem; font-weight: bold; color: #e67e22; }
+        .fee-name { font-weight: bold; color: var(--scout-green); }
+        .fee-price { font-size: 1.2rem; font-weight: bold; }
 
-        .note {
-            font-size: 0.85rem;
-            color: #666;
-            background: #eee;
-            padding: 15px;
+        .note-box {
+            background: #fff9db;
+            padding: 20px;
             border-radius: 10px;
+            font-size: 0.9rem;
             margin-top: 20px;
         }
 
@@ -118,7 +116,7 @@
             }
             .nav-links.active { right: 0; }
             .fee-item { flex-direction: column; align-items: flex-start; }
-            .fee-price { align-self: flex-end; }
+            .fee-price { margin-top: 5px; color: var(--scout-green); }
         }
 
         /* --- 5. フッター（共通） --- */
@@ -160,7 +158,7 @@
 
     <div class="page-header">
         <h1>費用について</h1>
-        <p>活動にかかる費用をご案内します</p>
+        <p>活動にかかる諸費用のご案内</p>
     </div>
 
     <div class="container">
@@ -169,14 +167,14 @@
             <h2>入団時にかかる費用</h2>
             <div class="fee-card">
                 <div class="fee-item">
-                    <span class="fee-label">入団金</span>
-                    <span class="fee-price">2,000円</span>
+                    <span class="fee-name">入団金</span>
+                    <span class="fee-price">¥ 2,000</span>
                 </div>
                 <div class="fee-item">
-                    <span class="fee-label">日本連盟登録料（年額）</span>
-                    <span class="fee-price">6,600円</span>
+                    <span class="fee-name">スカウト登録料（年額）</span>
+                    <span class="fee-price">¥ 6,600</span>
                 </div>
-                <p class="note">※登録料は年度（4月〜翌3月）ごとの更新となります。<br>※途中入団の場合は月割り計算となる場合があります。</p>
+                <p style="font-size: 0.85rem; color: #666; margin-top: 10px;">※登録料は年度途中の入団の場合、月割り計算となります。</p>
             </div>
         </div>
 
@@ -184,40 +182,26 @@
             <h2>継続的にかかる費用</h2>
             <div class="fee-card">
                 <div class="fee-item">
-                    <span class="fee-label">育成会費（団費 / 月額）</span>
-                    <span class="fee-price">2,000円</span>
+                    <span class="fee-name">団費（月額）</span>
+                    <span class="fee-price">¥ 1,500</span>
                 </div>
                 <div class="fee-item">
-                    <span class="fee-label">隊活動費（月額）</span>
-                    <span class="fee-price">500円〜1,000円程度</span>
+                    <span class="fee-name">育成会費（月額・一世帯）</span>
+                    <span class="fee-price">¥ 1,000</span>
                 </div>
-                <p class="note">
-                    育成会費は、団の運営や用具の維持管理に使用されます。<br>
-                    隊活動費は、各隊の集会での材料費などに充てられます。<br>
-                    ※金額は所属する隊によって多少前後する場合があります。
-                </p>
+                <div class="note-box">
+                    <strong>備考：</strong><br>
+                    キャンプや遠征などの大きなイベントの際は、別途参加費（実費程度）を集金する場合があります。
+                </div>
             </div>
         </div>
 
         <div class="section">
-            <h2>その他の費用</h2>
+            <h2>制服・備品について</h2>
             <div class="fee-card">
-                <div class="fee-item">
-                    <span class="fee-label">制服・個人装備</span>
-                    <span class="fee-price">実費</span>
-                </div>
-                <div class="fee-item">
-                    <span class="fee-label">キャンプ・遠征費</span>
-                    <span class="fee-price">その都度徴収</span>
-                </div>
-                <p class="note">
-                    夏キャンプなどの宿泊行事や、交通費が伴う遠征の際は、実費相当分を別途ご負担いただく形となります。
-                </p>
+                <p>各隊ごとの制服、キャップ、教本などは個人購入となります。</p>
+                <p>団から貸与される備品や、お下がりの制服を利用できる場合もありますので、詳しくは見学時などにお気軽にご相談ください。</p>
             </div>
-        </div>
-
-        <div class="section" style="text-align: center; margin-top: 40px;">
-            <p>※詳しい金額設定については、見学・体験時に資料にてご説明させていただきます。</p>
         </div>
 
     </div>
