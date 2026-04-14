@@ -13,9 +13,9 @@
             --text-dark: #333;
             --white: #ffffff;
             /* 隊別カラー */
-            --beaver: #64b5f6;
-            --cub: #f4d03f;
-            --boy: #2e7d32; /* ボーイ隊らしい少し深めの緑 */
+            --beaver: #64b5f6; /* ビーバー：水色 */
+            --cub: #0056b3;    /* カブ：制服の青（パッションブルー） */
+            --boy: #2e7d32;    /* ボーイ：緑 */
         }
 
         body, html {
@@ -25,6 +25,10 @@
             color: var(--text-dark);
             overflow-x: hidden; scroll-behavior: smooth;
         }
+
+        /* 改行コントロール */
+        .sp-br { display: none; }
+        .pc-br { display: inline; }
 
         /* --- 2. ヘッダー --- */
         header {
@@ -78,7 +82,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .btn-bvs { background: var(--beaver); color: white; }
-        .btn-cs { background: var(--cub); color: #856404; }
+        .btn-cs { background: var(--cub); color: white; } /* 文字色を白に修正 */
         .btn-bs { background: var(--boy); color: white; }
         .unit-nav a:hover { opacity: 0.8; transform: translateY(-2px); }
 
@@ -89,7 +93,7 @@
             scroll-margin-top: 100px;
         }
 
-        .unit-header { padding-left: 20px; margin-bottom: 30px; }
+        .unit-header { padding-left: 20px; margin-bottom: 30px; border-left-width: 8px; border-left-style: solid; }
         .unit-header h2 { margin: 0; color: var(--scout-green); font-size: 1.6rem; }
         .theme-box {
             padding: 15px 20px; border-radius: 10px;
@@ -106,21 +110,25 @@
         
         .month-num {
             width: 60px; display: flex; flex-direction: column; align-items: center;
-            justify-content: center; font-weight: bold; flex-shrink: 0;
+            justify-content: center; font-weight: bold; flex-shrink: 0; color: white;
         }
         .month-num .digit { font-size: 1.4rem; }
         .month-num .label { font-size: 0.7rem; }
 
         .event-info { padding: 15px; flex-grow: 1; }
-        .month-target { font-size: 0.75rem; color: #888; font-style: italic; margin-bottom: 8px; border-bottom: 1px solid #f0f0f0; padding-bottom: 4px; }
         
+        /* ボーイ隊向け設定 */
+        .month-target { font-size: 0.75rem; color: #888; font-style: italic; margin-bottom: 8px; border-bottom: 1px solid #f0f0f0; padding-bottom: 4px; }
         .event-group { margin-bottom: 8px; }
         .event-label { font-size: 0.7rem; font-weight: bold; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-bottom: 3px; }
         .label-shukai { background: #e8f5e9; color: #2e7d32; }
         .label-taikai { background: #fff3e0; color: #e65100; }
-        
         .event-list { font-size: 0.85rem; color: #444; line-height: 1.6; margin: 0; padding-left: 0; list-style: none; }
         .event-list li::before { content: "・"; }
+
+        /* 汎用イベント（ビーバー・カブ） */
+        .event-title { font-weight: bold; color: var(--scout-green); margin-bottom: 5px; font-size: 1rem; }
+        .event-detail { font-size: 0.85rem; color: #666; line-height: 1.5; }
 
         /* --- 4. レスポンシブ --- */
         @media (max-width: 768px) {
@@ -139,6 +147,7 @@
         }
 
         footer { text-align: center; padding: 60px 20px; background: #333; color: #ccc; margin-top: 100px; }
+        footer .copyright { margin-bottom: 20px; color: #999; }
     </style>
 </head>
 <body>
@@ -169,7 +178,7 @@
         </div>
 
         <section class="schedule-section" id="beaver">
-            <div class="unit-header" style="border-left: 8px solid var(--beaver);">
+            <div class="unit-header" style="border-left-color: var(--beaver);">
                 <h2>ビーバー隊（BVS）</h2>
                 <div class="theme-box" style="border-color: var(--beaver); background: #f0f7ff;">
                     <strong>【年間テーマ】</strong><br>
@@ -177,47 +186,47 @@
                 </div>
             </div>
             <div class="calendar-grid">
-                <div class="month-card"><div class="month-num" style="background: var(--beaver); color: white;"><span class="digit">4</span><span class="label">APR</span></div><div class="event-info"><div class="event-title">入隊上進式</div><div class="event-detail">・あたらしいともだちをむかえて</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--beaver); color: white;"><span class="digit">5</span><span class="label">MAY</span></div><div class="event-info"><div class="event-title">春をあじわう</div><div class="event-detail">・はるのやそう / 石がまピザ</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--beaver); color: white;"><span class="digit">6</span><span class="label">JUN</span></div><div class="event-info"><div class="event-title">そめてあそぶ</div><div class="event-detail">・草でそめる / かわであそぶ</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--beaver); color: white;"><span class="digit">7</span><span class="label">JUL</span></div><div class="event-info"><div class="event-title">竹をきる</div><div class="event-detail">・かみすき / ながしそうめん</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--beaver); color: white;"><span class="digit">8</span><span class="label">AUG</span></div><div class="event-info"><div class="event-title">なつきゃんぷ</div><div class="event-detail">・さわあそび / ドラムカンぶろ</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--beaver); color: white;"><span class="digit">9</span><span class="label">SEP</span></div><div class="event-info"><div class="event-title">サバイバルごはん</div><div class="event-detail">・竹ごはん / チーフリング作り</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--beaver); color: white;"><span class="digit">10</span><span class="label">OCT</span></div><div class="event-info"><div class="event-title">ハイキング</div><div class="event-detail">・れきしのみち / いもにかい</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--beaver); color: white;"><span class="digit">11</span><span class="label">NOV</span></div><div class="event-info"><div class="event-title">秋をあそぶ</div><div class="event-detail">・ほしがきづくり / やがいりょうり</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--beaver); color: white;"><span class="digit">12</span><span class="label">DEC</span></div><div class="event-info"><div class="event-title">クリスマス</div><div class="event-detail">・たき火でケーキ / 木のこうさく</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--beaver); color: white;"><span class="digit">1</span><span class="label">JAN</span></div><div class="event-info"><div class="event-title">お正月遊び</div><div class="event-detail">・もちつき / おしょうがつのこうさく</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--beaver); color: white;"><span class="digit">2</span><span class="label">FEB</span></div><div class="event-info"><div class="event-title">ゆきあそび</div><div class="event-detail">・スノーシュー / そりあそび</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--beaver); color: white;"><span class="digit">3</span><span class="label">MAR</span></div><div class="event-info"><div class="event-title">お別れパーティー</div><div class="event-detail">・バーベキュー</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--beaver);"><span class="digit">4</span><span class="label">APR</span></div><div class="event-info"><div class="event-title">入隊上進式</div><div class="event-detail">・あたらしいともだちをむかえて</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--beaver);"><span class="digit">5</span><span class="label">MAY</span></div><div class="event-info"><div class="event-title">春をあじわう</div><div class="event-detail">・はるのやそう / 石がまピザ</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--beaver);"><span class="digit">6</span><span class="label">JUN</span></div><div class="event-info"><div class="event-title">そめてあそぶ</div><div class="event-detail">・草でそめる / かわであそぶ</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--beaver);"><span class="digit">7</span><span class="label">JUL</span></div><div class="event-info"><div class="event-title">竹をきる</div><div class="event-detail">・かみすき / ながしそうめん</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--beaver);"><span class="digit">8</span><span class="label">AUG</span></div><div class="event-info"><div class="event-title">なつきゃんぷ</div><div class="event-detail">・さわあそび / ドラムカンぶろ</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--beaver);"><span class="digit">9</span><span class="label">SEP</span></div><div class="event-info"><div class="event-title">サバイバルごはん</div><div class="event-detail">・竹ごはん / チーフリング作り</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--beaver);"><span class="digit">10</span><span class="label">OCT</span></div><div class="event-info"><div class="event-title">ハイキング</div><div class="event-detail">・れきしのみち / いもにかい</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--beaver);"><span class="digit">11</span><span class="label">NOV</span></div><div class="event-info"><div class="event-title">秋をあそぶ</div><div class="event-detail">・ほしがきづくり / やがいりょうり</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--beaver);"><span class="digit">12</span><span class="label">DEC</span></div><div class="event-info"><div class="event-title">クリスマス</div><div class="event-detail">・たき火でケーキ / 木のこうさく</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--beaver);"><span class="digit">1</span><span class="label">JAN</span></div><div class="event-info"><div class="event-title">お正月遊び</div><div class="event-detail">・もちつき / おしょうがつのこうさく</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--beaver);"><span class="digit">2</span><span class="label">FEB</span></div><div class="event-info"><div class="event-title">ゆきあそび</div><div class="event-detail">・スノーシュー / そりあそび</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--beaver);"><span class="digit">3</span><span class="label">MAR</span></div><div class="event-info"><div class="event-title">おわかれパーティー</div><div class="event-detail">・バーベキュー</div></div></div>
             </div>
         </section>
 
         <section class="schedule-section" id="cub">
-            <div class="unit-header" style="border-left: 8px solid var(--cub);">
+            <div class="unit-header" style="border-left-color: var(--cub);">
                 <h2>カブ隊（CS）</h2>
-                <div class="theme-box" style="border-color: var(--cub); background: #fffde7;">
+                <div class="theme-box" style="border-color: var(--cub); background: #e6f0ff;">
                     <strong>【年間テーマ】</strong><br>
                     つなげよう！カブの輪・和・WA！！～みんなで地球をつないじゃおう～
                 </div>
             </div>
             <div class="calendar-grid">
-                <div class="month-card"><div class="month-num" style="background: var(--cub); color: #856404;"><span class="digit">4</span><span class="label">APR</span></div><div class="event-info"><div class="event-title">入隊上進式 / 募金</div><div class="event-detail">・輪になろう！ / 緑の羽根</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--cub); color: #856404;"><span class="digit">5</span><span class="label">MAY</span></div><div class="event-info"><div class="event-title">新緑キャンプ</div><div class="event-detail">・仲間と力を合わせてキャンプ</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--cub); color: #856404;"><span class="digit">6</span><span class="label">JUN</span></div><div class="event-info"><div class="event-title">川で学ぶ</div><div class="event-detail">・たまき（環）さんと遊ぼう！</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--cub); color: #856404;"><span class="digit">7</span><span class="label">JUL</span></div><div class="event-info"><div class="event-title">キャンプ準備</div><div class="event-detail">・秘密基地作り / 輪を作ろう！</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--cub); color: #856404;"><span class="digit">8</span><span class="label">AUG</span></div><div class="event-info"><div class="event-title">夏キャンプ</div><div class="event-detail">・みんなの笑顔 Part.Ⅰ</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--cub); color: #856404;"><span class="digit">9</span><span class="label">SEP</span></div><div class="event-info"><div class="event-title">秋キャンプ</div><div class="event-detail">・みんなの笑顔 Part.Ⅱ</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--cub); color: #856404;"><span class="digit">10</span><span class="label">OCT</span></div><div class="event-info"><div class="event-title">芋煮会＆運動会</div><div class="event-detail">・友情の輪で大運動会！！</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--cub); color: #856404;"><span class="digit">11</span><span class="label">NOV</span></div><div class="event-info"><div class="event-title">鼓隊発表＆募金</div><div class="event-detail">・輪の躍動！</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--cub); color: #856404;"><span class="digit">12</span><span class="label">DEC</span></div><div class="event-info"><div class="event-title">クリスマス / 月の輪</div><div class="event-detail">・ring!ring!ring! / アカデミア</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--cub); color: #856404;"><span class="digit">1</span><span class="label">JAN</span></div><div class="event-info"><div class="event-title">スキー / 月の輪</div><div class="event-detail">・ゲレンデに輪を描く！</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--cub); color: #856404;"><span class="digit">2</span><span class="label">FEB</span></div><div class="event-info"><div class="event-title">パインウッドダービー</div><div class="event-detail">・手と手をつなぎ未来をつくる</div></div></div>
-                <div class="month-card"><div class="month-num" style="background: var(--cub); color: #856404;"><span class="digit">3</span><span class="label">MAR</span></div><div class="event-info"><div class="event-title">お別れ隊集会</div><div class="event-detail">・和をもってカブとなす</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--cub);"><span class="digit">4</span><span class="label">APR</span></div><div class="event-info"><div class="event-title">入隊上進式 / 募金</div><div class="event-detail">・輪になろう！ / 緑の羽根</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--cub);"><span class="digit">5</span><span class="label">MAY</span></div><div class="event-info"><div class="event-title">新緑キャンプ</div><div class="event-detail">・仲間と力を合わせてキャンプ</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--cub);"><span class="digit">6</span><span class="label">JUN</span></div><div class="event-info"><div class="event-title">川で学ぶ</div><div class="event-detail">・たまき（環）さんと遊ぼう！</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--cub);"><span class="digit">7</span><span class="label">JUL</span></div><div class="event-info"><div class="event-title">キャンプ準備</div><div class="event-detail">・秘密基地作り / 輪を作ろう！</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--cub);"><span class="digit">8</span><span class="label">AUG</span></div><div class="event-info"><div class="event-title">夏キャンプ</div><div class="event-detail">・みんなの笑顔 Part.Ⅰ</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--cub);"><span class="digit">9</span><span class="label">SEP</span></div><div class="event-info"><div class="event-title">秋キャンプ</div><div class="event-detail">・みんなの笑顔 Part.Ⅱ</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--cub);"><span class="digit">10</span><span class="label">OCT</span></div><div class="event-info"><div class="event-title">芋煮会＆運動会</div><div class="event-detail">・友情の輪で大運動会！！</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--cub);"><span class="digit">11</span><span class="label">NOV</span></div><div class="event-info"><div class="event-title">鼓隊発表＆募金</div><div class="event-detail">・輪の躍動！</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--cub);"><span class="digit">12</span><span class="label">DEC</span></div><div class="event-info"><div class="event-title">クリスマス / 月の輪</div><div class="event-detail">・ring!ring!ring! / アカデミア</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--cub);"><span class="digit">1</span><span class="label">JAN</span></div><div class="event-info"><div class="event-title">スキー / 月の輪</div><div class="event-detail">・ゲレンデに輪を描く！</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--cub);"><span class="digit">2</span><span class="label">FEB</span></div><div class="event-info"><div class="event-title">パインウッドダービー</div><div class="event-detail">・手と手をつなぎ未来をつくる</div></div></div>
+                <div class="month-card"><div class="month-num" style="background: var(--cub);"><span class="digit">3</span><span class="label">MAR</span></div><div class="event-info"><div class="event-title">お別れ隊集会</div><div class="event-detail">・和をもってカブとなす</div></div></div>
             </div>
         </section>
 
         <section class="schedule-section" id="boy">
-            <div class="unit-header" style="border-left: 8px solid var(--boy);">
+            <div class="unit-header" style="border-left-color: var(--boy);">
                 <h2>ボーイ隊（BS）</h2>
                 <div class="theme-box" style="border-color: var(--boy); background: #e8f5e9;">
                     <strong>【年間テーマ】</strong><br>
@@ -227,7 +236,7 @@
 
             <div class="calendar-grid">
                 <div class="month-card">
-                    <div class="month-num" style="background: var(--boy); color: white;"><span class="digit">4</span><span class="label">APR</span></div>
+                    <div class="month-num" style="background: var(--boy);"><span class="digit">4</span><span class="label">APR</span></div>
                     <div class="event-info">
                         <div class="month-target">目標:奉仕活動を行う</div>
                         <div class="event-group">
@@ -237,7 +246,7 @@
                     </div>
                 </div>
                 <div class="month-card">
-                    <div class="month-num" style="background: var(--boy); color: white;"><span class="digit">5</span><span class="label">MAY</span></div>
+                    <div class="month-num" style="background: var(--boy);"><span class="digit">5</span><span class="label">MAY</span></div>
                     <div class="event-info">
                         <div class="month-target">目標:大自然を知る</div>
                         <div class="event-group">
@@ -251,7 +260,7 @@
                     </div>
                 </div>
                 <div class="month-card">
-                    <div class="month-num" style="background: var(--boy); color: white;"><span class="digit">6</span><span class="label">JUN</span></div>
+                    <div class="month-num" style="background: var(--boy);"><span class="digit">6</span><span class="label">JUN</span></div>
                     <div class="event-info">
                         <div class="month-target">目標:知識と技能の習得</div>
                         <div class="event-group">
@@ -265,7 +274,7 @@
                     </div>
                 </div>
                 <div class="month-card">
-                    <div class="month-num" style="background: var(--boy); color: white;"><span class="digit">7</span><span class="label">JUL</span></div>
+                    <div class="month-num" style="background: var(--boy);"><span class="digit">7</span><span class="label">JUL</span></div>
                     <div class="event-info">
                         <div class="month-target">目標:リーダーシップ</div>
                         <div class="event-group">
@@ -279,7 +288,7 @@
                     </div>
                 </div>
                 <div class="month-card">
-                    <div class="month-num" style="background: var(--boy); color: white;"><span class="digit">8</span><span class="label">AUG</span></div>
+                    <div class="month-num" style="background: var(--boy);"><span class="digit">8</span><span class="label">AUG</span></div>
                     <div class="event-info">
                         <div class="month-target">目標:好奇心と冒険心</div>
                         <div class="event-group">
@@ -293,7 +302,7 @@
                     </div>
                 </div>
                 <div class="month-card">
-                    <div class="month-num" style="background: var(--boy); color: white;"><span class="digit">9</span><span class="label">SEP</span></div>
+                    <div class="month-num" style="background: var(--boy);"><span class="digit">9</span><span class="label">SEP</span></div>
                     <div class="event-info">
                         <div class="month-target">目標:判断力と決断力</div>
                         <div class="event-group">
@@ -303,7 +312,7 @@
                     </div>
                 </div>
                 <div class="month-card">
-                    <div class="month-num" style="background: var(--boy); color: white;"><span class="digit">10</span><span class="label">OCT</span></div>
+                    <div class="month-num" style="background: var(--boy);"><span class="digit">10</span><span class="label">OCT</span></div>
                     <div class="event-info">
                         <div class="month-target">目標:創造力を伸ばす</div>
                         <div class="event-group">
@@ -317,7 +326,7 @@
                     </div>
                 </div>
                 <div class="month-card">
-                    <div class="month-num" style="background: var(--boy); color: white;"><span class="digit">11</span><span class="label">NOV</span></div>
+                    <div class="month-num" style="background: var(--boy);"><span class="digit">11</span><span class="label">NOV</span></div>
                     <div class="event-info">
                         <div class="month-target">目標:役割と責務を学ぶ</div>
                         <div class="event-group">
@@ -327,7 +336,7 @@
                     </div>
                 </div>
                 <div class="month-card">
-                    <div class="month-num" style="background: var(--boy); color: white;"><span class="digit">12</span><span class="label">DEC</span></div>
+                    <div class="month-num" style="background: var(--boy);"><span class="digit">12</span><span class="label">DEC</span></div>
                     <div class="event-info">
                         <div class="month-target">目標:自分の務めを行う</div>
                         <div class="event-group">
@@ -341,7 +350,7 @@
                     </div>
                 </div>
                 <div class="month-card">
-                    <div class="month-num" style="background: var(--boy); color: white;"><span class="digit">1</span><span class="label">JAN</span></div>
+                    <div class="month-num" style="background: var(--boy);"><span class="digit">1</span><span class="label">JAN</span></div>
                     <div class="event-info">
                         <div class="month-target">目標:正義感を養う</div>
                         <div class="event-group">
@@ -355,7 +364,7 @@
                     </div>
                 </div>
                 <div class="month-card">
-                    <div class="month-num" style="background: var(--boy); color: white;"><span class="digit">2</span><span class="label">FEB</span></div>
+                    <div class="month-num" style="background: var(--boy);"><span class="digit">2</span><span class="label">FEB</span></div>
                     <div class="event-info">
                         <div class="month-target">目標:判断力と決断力</div>
                         <div class="event-group">
@@ -365,7 +374,7 @@
                     </div>
                 </div>
                 <div class="month-card">
-                    <div class="month-num" style="background: var(--boy); color: white;"><span class="digit">3</span><span class="label">MAR</span></div>
+                    <div class="month-num" style="background: var(--boy);"><span class="digit">3</span><span class="label">MAR</span></div>
                     <div class="event-info">
                         <div class="month-target">目標:愛と感謝する心</div>
                         <div class="event-group">
