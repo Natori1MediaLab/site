@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>ボーイスカウト名取第1団 | Boy Scouts Natori 1st Group</title>
-    <meta name="description" content="宮城県名取市で活動するボーイスカウト名取第1団の公式サイトです。キャンプやハイキング、奉仕活動など、自然の中での体験を通じて子供たちの自立心と協調性を育みます。体験・見学随時受付中！">
+    <meta name="description" content="宮城県名取市で活動するボーイスカウト名取第1団の公式サイトです。キャンプやハイキング、奉仕活動など、自然体験を通じて子供たちの自立心と協調性を育みます。体験・見学随時受付中！">
     <meta name="keywords" content="ボーイスカウト, 名取市, 宮城県, 名取第1団, 習い事, キャンプ, 体験活動, 子育て">
 
     <style>
@@ -31,7 +31,7 @@
         .sp-br { display: none; }
         .pc-br { display: inline; }
 
-        /* --- 2. ヘッダー（最新メニュー） --- */
+        /* --- 2. ヘッダー --- */
         header {
             position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
@@ -147,9 +147,9 @@
         <nav>
             <ul class="nav-links" id="nav-menu">
                 <li><a href="about.html"><span class="ja">ボーイスカウトとは</span><span class="en">About</span></a></li>
-                <li><a href="fee.html"><span class="ja">費用について</span><span class="en">Fees</span></a></li>
-                <li><a href="schedule.html"><span class="ja">年間活動計画</span><span class="en">Schedule</span></a></li>
                 <li><a href="sns.html"><span class="ja">各隊のSNS</span><span class="en">Social Media</span></a></li>
+                <li><a href="schedule.html"><span class="ja">年間活動計画</span><span class="en">Schedule</span></a></li>
+                <li><a href="fee.html"><span class="ja">費用について</span><span class="en">Fees</span></a></li>
                 <li><a href="contact.html"><span class="ja">お問い合わせ</span><span class="en">Contact</span></a></li>
             </ul>
         </nav>
@@ -170,10 +170,7 @@
         <div class="welcome-box">
             <span class="welcome-tag">JOIN US!</span>
             <h2 class="welcome-text">体験・見学、歓迎します！</h2>
-            <p>
-                名取の自然の中で、新しい冒険を<br class="pc-br">一緒に始めませんか？<br class="sp-br">
-                ぜひ見学・体験に<br class="pc-br">いらしてください！
-            </p>
+            <p>名取の自然の中で、新しい冒険を<br class="pc-br">一緒に始めませんか？<br class="sp-br">ぜひ見学・体験にいらしてください！</p>
             <a href="contact.html" class="btn-join">入団希望はこちら</a>
         </div>
     </div>
@@ -182,7 +179,7 @@
         <div class="section-title"><span class="ja">ポータルメニュー</span><span class="en">Portal Menu</span></div>
         <div class="portal-grid">
             <a href="about.html" class="card c-about">
-                <span class="ja">ボーイスカウトってなに？</span><span class="en">What is Scouting?</span>
+                <span class="ja">ボーイスカウトとは</span><span class="en">About</span>
                 <p>歴史や教育方針について詳しく。</p>
             </a>
             <a href="sns.html" class="card c-sns">
@@ -190,11 +187,11 @@
                 <p>日々の元気な活動風景を配信中！</p>
             </a>
             <a href="schedule.html" class="card c-sched">
-                <span class="ja">年間活動計画</span><span class="en">Annual Schedule</span>
+                <span class="ja">年間活動計画</span><span class="en">Schedule</span>
                 <p>キャンプや季節の行事をチェック！</p>
             </a>
             <a href="fee.html" class="card c-fee">
-                <span class="ja">費用について</span><span class="en">Fees & Costs</span>
+                <span class="ja">費用について</span><span class="en">Fees</span>
                 <p>入団金や会費についてご案内します。</p>
             </a>
         </div>
@@ -211,6 +208,7 @@
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
+        // スマホメニュークリック時に閉じる
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
