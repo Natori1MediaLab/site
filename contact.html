@@ -20,9 +20,10 @@
             font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Meiryo", sans-serif;
             background-color: var(--bg-light);
             color: var(--text-dark);
+            overflow-x: hidden;
         }
 
-        /* --- 2. ヘッダー --- */
+        /* --- 2. ヘッダー（共通デザイン） --- */
         header {
             position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
@@ -31,18 +32,38 @@
             color: var(--white); backdrop-filter: blur(5px);
         }
 
-        .logo { text-decoration: none; color: var(--white); }
+        .logo { text-decoration: none; color: var(--white); z-index: 1100; flex-shrink: 0; }
         .logo .main-name { font-size: 1.1rem; font-weight: bold; display: block; }
         .logo .sub-name { font-size: 0.7rem; opacity: 0.8; }
 
-        /* --- 3. メインレイアウト --- */
-        .container { max-width: 800px; margin: 120px auto 60px; padding: 0 20px; }
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+        .nav-links a { text-decoration: none; color: var(--white); display: block; transition: 0.3s; }
+        .nav-links a .ja { display: block; font-size: 0.85rem; font-weight: bold; text-align: center; }
+        .nav-links a .en { display: block; font-size: 0.6rem; opacity: 0.7; text-transform: uppercase; text-align: center; }
+        .nav-links a:hover { color: var(--scout-yellow); }
+
+        /* ハンバーガーボタン */
+        .hamburger {
+            display: none; cursor: pointer; z-index: 1100; background: none; border: none;
+            width: 30px; height: 30px; position: relative; padding: 0;
+        }
+        .hamburger span {
+            display: block; position: absolute; left: 0; width: 30px; height: 3px;
+            background: var(--white); border-radius: 3px; transition: all 0.4s ease;
+        }
+        .hamburger span:nth-child(1) { top: 4px; }
+        .hamburger span:nth-child(2) { top: 14px; }
+        .hamburger span:nth-child(3) { top: 24px; }
+        .hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+        /* --- 3. フォームレイアウト --- */
+        .container { max-width: 800px; margin: 140px auto 60px; padding: 0 20px; }
 
         .form-header { text-align: center; margin-bottom: 40px; }
         .form-header h1 { color: var(--scout-green); font-size: 1.8rem; margin-bottom: 10px; }
-        .form-header p { font-size: 0.95rem; color: #666; line-height: 1.6; }
-
-        /* フォーム本体 */
+        
         .contact-form {
             background: var(--white); padding: 40px; border-radius: 20px;
             box-shadow: 0 5px 25px rgba(0,0,0,0.05);
@@ -55,47 +76,38 @@
         }
         .form-group label .required {
             background: var(--error); color: white; font-size: 0.7rem;
-            padding: 2px 6px; border-radius: 3px; margin-left: 8px; vertical-align: middle;
+            padding: 2px 6px; border-radius: 3px; margin-left: 8px;
         }
 
-        /* 入力要素 */
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        select,
-        textarea {
-            width: 100%; padding: 12px 15px; border: 1px solid #ddd;
-            border-radius: 8px; box-sizing: border-box; font-size: 1rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none; border-color: var(--scout-green);
-            box-shadow: 0 0 0 3px rgba(46, 90, 39, 0.1);
+        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
+            box-sizing: border-box; font-size: 1rem;
         }
 
-        .radio-group { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
-        .radio-group label { font-weight: normal; color: var(--text-dark); cursor: pointer; }
-
-        /* 送信ボタン */
         .submit-btn {
             display: block; width: 100%; max-width: 300px; margin: 40px auto 0;
             padding: 18px; background: var(--scout-green); color: white;
             border: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold;
-            cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(46, 90, 39, 0.3);
+            cursor: pointer; transition: 0.3s;
         }
-        .submit-btn:hover { background: #3a7531; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(46, 90, 39, 0.4); }
-
-        /* 注意事項 */
-        .privacy-note {
-            margin-top: 30px; font-size: 0.8rem; color: #888; text-align: center; line-height: 1.6;
-        }
+        .submit-btn:hover { background: #3a7531; transform: translateY(-2px); }
 
         /* --- 4. レスポンシブ --- */
         @media (max-width: 768px) {
-            header { padding: 0 20px; }
-            .contact-form { padding: 25px 20px; }
-            .form-header h1 { font-size: 1.5rem; }
+            header { padding: 0 15px; }
+            .hamburger { display: block; }
+            .nav-links {
+                position: fixed; right: -100%; top: 0; width: 100%; height: 100vh;
+                background: var(--scout-green); flex-direction: column;
+                align-items: center; justify-content: center; transition: 0.5s ease;
+                z-index: 1050; gap: 40px;
+            }
+            .nav-links.active { right: 0; }
+            .container { margin-top: 110px; }
+            .contact-form { padding: 25px 15px; }
         }
+
+        footer { text-align: center; padding: 60px 20px; background: #333; color: #ccc; margin-top: 100px; }
     </style>
 </head>
 <body>
@@ -105,75 +117,83 @@
             <span class="main-name">ボーイスカウト名取第1団</span>
             <span class="sub-name">Boy Scouts Natori 1st Group</span>
         </a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        <nav>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="about.html"><span class="ja">ボーイスカウトってなに？</span><span class="en">About</span></a></li>
+                <li><a href="fee.html"><span class="ja">費用について</span><span class="en">Fees</span></a></li>
+                <li><a href="schedule.html"><span class="ja">年間活動計画</span><span class="en">Schedule</span></a></li>
+                <li><a href="sns.html"><span class="ja">各隊のSNS</span><span class="en">Social Media</span></a></li>
+                <li><a href="contact.html"><span class="ja">お問い合わせ</span><span class="en">Contact</span></a></li>
+            </ul>
+        </nav>
     </header>
 
     <div class="container">
         <div class="form-header">
             <h1>体験・入団のお申し込み</h1>
-            <p>
-                新しい冒険の第一歩をここから始めましょう！<br>
-                以下のフォームに必要事項を入力し、送信してください。<br>
-                担当者より、折り返し活動日の詳細などをご連絡いたします。
-            </p>
+            <p>名取の自然の中で、一緒に活動を楽しみましょう！</p>
         </div>
 
-        <form class="contact-form" action="#" method="post">
+        <form class="contact-form">
             <div class="form-group">
                 <label>お問い合わせ種別<span class="required">必須</span></label>
-                <div class="radio-group">
-                    <label><input type="radio" name="type" value="trial" checked> 無料体験・見学希望</label>
-                    <label><input type="radio" name="type" value="join"> 入団希望・相談</label>
-                    <label><input type="radio" name="type" value="other"> その他</label>
+                <div style="margin-top: 10px;">
+                    <label style="margin-right: 20px;"><input type="radio" name="type" checked> 無料体験・見学希望</label>
+                    <label><input type="radio" name="type"> 入団・その他の相談</label>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="parent-name">保護者様のお名前<span class="required">必須</span></label>
-                <input type="text" id="parent-name" name="parent-name" placeholder="例：名取 太郎" required>
+                <label for="p-name">保護者様のお名前<span class="required">必須</span></label>
+                <input type="text" id="p-name" required placeholder="例：名取 太郎">
             </div>
 
             <div class="form-group">
                 <label for="email">メールアドレス<span class="required">必須</span></label>
-                <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                <input type="email" id="email" required placeholder="example@mail.com">
             </div>
 
             <div class="form-group">
-                <label for="tel">電話番号（日中ご連絡がつく番号）<span class="required">必須</span></label>
-                <input type="tel" id="tel" name="tel" placeholder="090-0000-0000" required>
+                <label for="tel">電話番号<span class="required">必須</span></label>
+                <input type="tel" id="tel" required placeholder="090-0000-0000">
             </div>
 
             <div class="form-group">
-                <label for="grade">お子様の学年（現在の学年）<span class="required">必須</span></label>
-                <select id="grade" name="grade" required>
+                <label for="grade">お子様の学年<span class="required">必須</span></label>
+                <select id="grade" required>
                     <option value="">選択してください</option>
-                    <option value="year-1">幼稚園・保育園（年長）</option>
-                    <option value="elem-1">小学校 1年生</option>
-                    <option value="elem-2">小学校 2年生</option>
-                    <option value="elem-3">小学校 3年生</option>
-                    <option value="elem-4">小学校 4年生</option>
-                    <option value="elem-5">小学校 5年生</option>
-                    <option value="elem-6">小学校 6年生</option>
-                    <option value="jr-high">中学生以上</option>
+                    <option>幼稚園・保育園（年長）</option>
+                    <option>小学校 1年生</option>
+                    <option>小学校 2年生</option>
+                    <option>小学校 3年生</option>
+                    <option>小学校 4年生</option>
+                    <option>小学校 5年生</option>
+                    <option>小学校 6年生</option>
+                    <option>中学生以上</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="message">ご質問・ご要望など</label>
-                <textarea id="message" name="message" rows="5" placeholder="体験希望日や、気になっていることなどお気軽にご記入ください。"></textarea>
+                <label for="message">メッセージ</label>
+                <textarea id="message" rows="5" placeholder="体験希望日など、お気軽にご記入ください。"></textarea>
             </div>
 
-            <button type="submit" class="submit-btn">内容を確認して送信する</button>
-
-            <div class="privacy-note">
-                送信いただいた個人情報は、ボーイスカウト名取第1団の<br>
-                活動に関するご連絡以外には使用いたしません。
-            </div>
+            <button type="submit" class="submit-btn">送信内容を確認する</button>
         </form>
     </div>
 
-    <footer style="text-align: center; padding: 40px 20px; color: #999; font-size: 0.8rem;">
-        &copy; 2026 ボーイスカウト名取第1団
+    <footer>
+        <div class="copyright">&copy; 2026 ボーイスカウト名取第1団</div>
     </footer>
 
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
