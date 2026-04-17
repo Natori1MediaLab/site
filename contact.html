@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>体験・入団のお申し込み | ボーイスカウト名取第1団</title>
+    <style>
+        /* --- 1. 基本設定 --- */
+        :root {
+            --scout-green: #2e5a27;
+            --scout-yellow: #f4d03f;
+            --bg-light: #f4f7f6;
+            --text-dark: #333;
+            --white: #ffffff;
+            --error: #e74c3c;
+        }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%;
+            font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Meiryo", sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        /* --- 2. ヘッダー --- */
+        header {
+            position: fixed; top: 0; width: 100%; height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 40px; box-sizing: border-box;
+            background: rgba(46, 90, 39, 0.95); z-index: 1000;
+            color: var(--white); backdrop-filter: blur(5px);
+        }
+
+        .logo { text-decoration: none; color: var(--white); }
+        .logo .main-name { font-size: 1.1rem; font-weight: bold; display: block; }
+        .logo .sub-name { font-size: 0.7rem; opacity: 0.8; }
+
+        /* --- 3. メインレイアウト --- */
+        .container { max-width: 800px; margin: 120px auto 60px; padding: 0 20px; }
+
+        .form-header { text-align: center; margin-bottom: 40px; }
+        .form-header h1 { color: var(--scout-green); font-size: 1.8rem; margin-bottom: 10px; }
+        .form-header p { font-size: 0.95rem; color: #666; line-height: 1.6; }
+
+        /* フォーム本体 */
+        .contact-form {
+            background: var(--white); padding: 40px; border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+        }
+
+        .form-group { margin-bottom: 25px; }
+        .form-group label {
+            display: block; font-weight: bold; margin-bottom: 8px;
+            color: var(--scout-green); font-size: 0.95rem;
+        }
+        .form-group label .required {
+            background: var(--error); color: white; font-size: 0.7rem;
+            padding: 2px 6px; border-radius: 3px; margin-left: 8px; vertical-align: middle;
+        }
+
+        /* 入力要素 */
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%; padding: 12px 15px; border: 1px solid #ddd;
+            border-radius: 8px; box-sizing: border-box; font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none; border-color: var(--scout-green);
+            box-shadow: 0 0 0 3px rgba(46, 90, 39, 0.1);
+        }
+
+        .radio-group { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
+        .radio-group label { font-weight: normal; color: var(--text-dark); cursor: pointer; }
+
+        /* 送信ボタン */
+        .submit-btn {
+            display: block; width: 100%; max-width: 300px; margin: 40px auto 0;
+            padding: 18px; background: var(--scout-green); color: white;
+            border: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold;
+            cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(46, 90, 39, 0.3);
+        }
+        .submit-btn:hover { background: #3a7531; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(46, 90, 39, 0.4); }
+
+        /* 注意事項 */
+        .privacy-note {
+            margin-top: 30px; font-size: 0.8rem; color: #888; text-align: center; line-height: 1.6;
+        }
+
+        /* --- 4. レスポンシブ --- */
+        @media (max-width: 768px) {
+            header { padding: 0 20px; }
+            .contact-form { padding: 25px 20px; }
+            .form-header h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <span class="main-name">ボーイスカウト名取第1団</span>
+            <span class="sub-name">Boy Scouts Natori 1st Group</span>
+        </a>
+    </header>
+
+    <div class="container">
+        <div class="form-header">
+            <h1>体験・入団のお申し込み</h1>
+            <p>
+                新しい冒険の第一歩をここから始めましょう！<br>
+                以下のフォームに必要事項を入力し、送信してください。<br>
+                担当者より、折り返し活動日の詳細などをご連絡いたします。
+            </p>
+        </div>
+
+        <form class="contact-form" action="#" method="post">
+            <div class="form-group">
+                <label>お問い合わせ種別<span class="required">必須</span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="type" value="trial" checked> 無料体験・見学希望</label>
+                    <label><input type="radio" name="type" value="join"> 入団希望・相談</label>
+                    <label><input type="radio" name="type" value="other"> その他</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="parent-name">保護者様のお名前<span class="required">必須</span></label>
+                <input type="text" id="parent-name" name="parent-name" placeholder="例：名取 太郎" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">メールアドレス<span class="required">必須</span></label>
+                <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tel">電話番号（日中ご連絡がつく番号）<span class="required">必須</span></label>
+                <input type="tel" id="tel" name="tel" placeholder="090-0000-0000" required>
+            </div>
+
+            <div class="form-group">
+                <label for="grade">お子様の学年（現在の学年）<span class="required">必須</span></label>
+                <select id="grade" name="grade" required>
+                    <option value="">選択してください</option>
+                    <option value="year-1">幼稚園・保育園（年長）</option>
+                    <option value="elem-1">小学校 1年生</option>
+                    <option value="elem-2">小学校 2年生</option>
+                    <option value="elem-3">小学校 3年生</option>
+                    <option value="elem-4">小学校 4年生</option>
+                    <option value="elem-5">小学校 5年生</option>
+                    <option value="elem-6">小学校 6年生</option>
+                    <option value="jr-high">中学生以上</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">ご質問・ご要望など</label>
+                <textarea id="message" name="message" rows="5" placeholder="体験希望日や、気になっていることなどお気軽にご記入ください。"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">内容を確認して送信する</button>
+
+            <div class="privacy-note">
+                送信いただいた個人情報は、ボーイスカウト名取第1団の<br>
+                活動に関するご連絡以外には使用いたしません。
+            </div>
+        </form>
+    </div>
+
+    <footer style="text-align: center; padding: 40px 20px; color: #999; font-size: 0.8rem;">
+        &copy; 2026 ボーイスカウト名取第1団
+    </footer>
+
+</body>
+</html>
