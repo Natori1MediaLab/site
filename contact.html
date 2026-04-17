@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* --- 2. ヘッダー（共通デザイン） --- */
+        /* --- 2. ヘッダー --- */
         header {
             position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
@@ -63,7 +63,8 @@
 
         .form-header { text-align: center; margin-bottom: 40px; }
         .form-header h1 { color: var(--scout-green); font-size: 1.8rem; margin-bottom: 10px; }
-        
+        .form-header p { font-size: 0.95rem; color: #666; line-height: 1.6; }
+
         .contact-form {
             background: var(--white); padding: 40px; border-radius: 20px;
             box-shadow: 0 5px 25px rgba(0,0,0,0.05);
@@ -81,16 +82,26 @@
 
         input[type="text"], input[type="email"], input[type="tel"], select, textarea {
             width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
-            box-sizing: border-box; font-size: 1rem;
+            box-sizing: border-box; font-size: 1rem; transition: 0.3s;
         }
+        input:focus, select:focus, textarea:focus {
+            outline: none; border-color: var(--scout-green); box-shadow: 0 0 0 3px rgba(46, 90, 39, 0.1);
+        }
+
+        .radio-group { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
+        .radio-group label { font-weight: normal; color: var(--text-dark); cursor: pointer; }
 
         .submit-btn {
             display: block; width: 100%; max-width: 300px; margin: 40px auto 0;
             padding: 18px; background: var(--scout-green); color: white;
             border: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold;
-            cursor: pointer; transition: 0.3s;
+            cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(46, 90, 39, 0.3);
         }
         .submit-btn:hover { background: #3a7531; transform: translateY(-2px); }
+
+        .privacy-note {
+            margin-top: 30px; font-size: 0.8rem; color: #888; text-align: center; line-height: 1.6;
+        }
 
         /* --- 4. レスポンシブ --- */
         @media (max-width: 768px) {
@@ -105,6 +116,7 @@
             .nav-links.active { right: 0; }
             .container { margin-top: 110px; }
             .contact-form { padding: 25px 15px; }
+            .form-header h1 { font-size: 1.5rem; }
         }
 
         footer { text-align: center; padding: 60px 20px; background: #333; color: #ccc; margin-top: 100px; }
@@ -132,54 +144,61 @@
     <div class="container">
         <div class="form-header">
             <h1>体験・入団のお申し込み</h1>
-            <p>名取の自然の中で、一緒に活動を楽しみましょう！</p>
+            <p>名取の自然の中で、新しい冒険を一緒に始めましょう！<br>担当者より、折り返し活動日の詳細などをご連絡いたします。</p>
         </div>
 
-        <form class="contact-form">
+        <form class="contact-form" action="https://ssgform.com/s/sguce1ckNBjV" method="post">
+            
             <div class="form-group">
                 <label>お問い合わせ種別<span class="required">必須</span></label>
-                <div style="margin-top: 10px;">
-                    <label style="margin-right: 20px;"><input type="radio" name="type" checked> 無料体験・見学希望</label>
-                    <label><input type="radio" name="type"> 入団・その他の相談</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="お問い合わせ種類" value="無料体験・見学希望" checked> 無料体験・見学希望</label>
+                    <label><input type="radio" name="お問い合わせ種類" value="入団希望・相談"> 入団希望・相談</label>
+                    <label><input type="radio" name="お問い合わせ種類" value="その他"> その他</label>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="p-name">保護者様のお名前<span class="required">必須</span></label>
-                <input type="text" id="p-name" required placeholder="例：名取 太郎">
+                <input type="text" id="p-name" name="保護者様お名前" placeholder="例：名取 太郎" required>
             </div>
 
             <div class="form-group">
                 <label for="email">メールアドレス<span class="required">必須</span></label>
-                <input type="email" id="email" required placeholder="example@mail.com">
+                <input type="email" id="email" name="メールアドレス" placeholder="example@mail.com" required>
             </div>
 
             <div class="form-group">
                 <label for="tel">電話番号<span class="required">必須</span></label>
-                <input type="tel" id="tel" required placeholder="090-0000-0000">
+                <input type="tel" id="tel" name="電話番号" placeholder="090-0000-0000" required>
             </div>
 
             <div class="form-group">
-                <label for="grade">お子様の学年<span class="required">必須</span></label>
-                <select id="grade" required>
+                <label for="grade">お子様の学年（現在の学年）<span class="required">必須</span></label>
+                <select id="grade" name="お子様の学年" required>
                     <option value="">選択してください</option>
-                    <option>幼稚園・保育園（年長）</option>
-                    <option>小学校 1年生</option>
-                    <option>小学校 2年生</option>
-                    <option>小学校 3年生</option>
-                    <option>小学校 4年生</option>
-                    <option>小学校 5年生</option>
-                    <option>小学校 6年生</option>
-                    <option>中学生以上</option>
+                    <option value="年長">幼稚園・保育園（年長）</option>
+                    <option value="小1">小学校 1年生</option>
+                    <option value="小2">小学校 2年生</option>
+                    <option value="小3">小学校 3年生</option>
+                    <option value="小4">小学校 4年生</option>
+                    <option value="小5">小学校 5年生</option>
+                    <option value="小6">小学校 6年生</option>
+                    <option value="中学生以上">中学生以上</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="message">メッセージ</label>
-                <textarea id="message" rows="5" placeholder="体験希望日など、お気軽にご記入ください。"></textarea>
+                <label for="message">ご質問・ご要望など</label>
+                <textarea id="message" name="メッセージ" rows="5" placeholder="体験希望日や、気になっていることなどお気軽にご記入ください。"></textarea>
             </div>
 
-            <button type="submit" class="submit-btn">送信内容を確認する</button>
+            <button type="submit" class="submit-btn">送信する</button>
+
+            <div class="privacy-note">
+                送信いただいた個人情報は、ボーイスカウト名取第1団の<br>
+                活動に関するご連絡以外には使用いたしません。
+            </div>
         </form>
     </div>
 
