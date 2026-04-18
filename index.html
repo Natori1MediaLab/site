@@ -8,7 +8,7 @@
     <meta name="keywords" content="ボーイスカウト, 名取市, 宮城県, 名取第1団, 習い事, キャンプ, 体験活動, 子育て">
 
     <style>
-        /* --- 共通設定（変更なし） --- */
+        /* --- 1. 基本設定（変更なし） --- */
         :root {
             --scout-green: #2e5a27;
             --scout-yellow: #f4d03f;
@@ -24,6 +24,7 @@
         .sp-br { display: none; }
         .pc-br { display: inline; }
 
+        /* --- 2. ヘッダー周り（ここを修正） --- */
         header {
             position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
@@ -36,16 +37,22 @@
         .logo .main-name { font-size: 1.1rem; font-weight: bold; display: block; }
         .logo .sub-name { font-size: 0.7rem; opacity: 0.8; }
 
-        /* --- PC版メニュー --- */
+        /* PC版メニューナビゲーション */
+        nav {
+            display: flex; align-items: center; justify-content: flex-end; flex-grow: 1;
+        }
+
         .nav-links { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
         .nav-links a { text-decoration: none; color: var(--white); display: block; transition: 0.3s ease; }
         .nav-links a .ja { display: block; font-size: 0.8rem; font-weight: bold; text-align: center; }
         .nav-links a .en { display: block; font-size: 0.55rem; opacity: 0.7; text-transform: uppercase; text-align: center; }
         .nav-links a:hover { color: var(--scout-yellow); transform: translateY(-2px); }
 
+        /* ハンバーガーボタン（右端固定用） */
         .hamburger {
             display: none; cursor: pointer; z-index: 1100; background: none; border: none;
             width: 30px; height: 30px; position: relative; padding: 0;
+            margin-left: auto; /* PC表示では非表示だが、一応右寄せ設定 */
         }
         .hamburger span { display: block; position: absolute; left: 0; width: 30px; height: 3px; background: var(--white); border-radius: 3px; transition: 0.4s; }
         .hamburger span:nth-child(1) { top: 4px; }
@@ -55,7 +62,7 @@
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
-        /* --- スライダー・コンテンツ（変更なし） --- */
+        /* --- 3. スライダー以降（変更なし） --- */
         .slider-container { width: 100%; height: 55vh; overflow: hidden; position: relative; margin-top: 80px; background: #eee; }
         .slider-track { display: flex; width: calc(400px * 10); animation: scroll 25s linear infinite; }
         .slider-track img { width: 400px; height: 55vh; object-fit: cover; flex-shrink: 0; border-right: 4px solid var(--white); }
@@ -80,10 +87,13 @@
         .card.c-sched { border-bottom-color: var(--boy); }
         .card.c-fee   { border-bottom-color: var(--scout-yellow); }
 
-        /* --- レスポンシブ（ここを重点的に修正） --- */
+        /* --- レスポンシブ設定（スマホメニュー文字サイズは大きいまま） --- */
         @media (max-width: 768px) {
-            header { padding: 0 20px; }
-            .hamburger { display: block; }
+            header { padding: 0 20px; justify-content: space-between; /* ロゴとボタンを端に寄せる */ }
+            
+            nav { display: none; /* スマホ時は nav タグごと隠す */ }
+
+            .hamburger { display: block; margin-left: auto; /* 右寄せ */ }
             
             .nav-links {
                 position: fixed; right: -100%; top: 0; width: 80%; height: 100vh;
@@ -91,18 +101,13 @@
                 align-items: center; justify-content: center; transition: 0.4s ease-in-out;
                 z-index: 1050; gap: 30px;
                 box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+                display: flex; /* JavaScriptで.activeが付いたとき用に flex にしておく */
             }
-            .nav-links.active { right: 0; }
+            /* JSで制御するため、ここでの .active は削除 */
 
-            /* スマホメニューの文字サイズを大きく */
-            .nav-links a .ja { 
-                font-size: 1.3rem; /* 以前より大きくしました */
-                letter-spacing: 0.05em;
-            }
-            .nav-links a .en { 
-                font-size: 0.8rem; 
-                margin-top: 5px;
-            }
+            /* スマホメニューの文字サイズは大きいまま維持 */
+            .nav-links a .ja { font-size: 1.3rem; letter-spacing: 0.05em; }
+            .nav-links a .en { font-size: 0.8rem; margin-top: 5px; }
             
             .sp-br { display: inline; }
             .pc-br { display: none; }
@@ -118,9 +123,9 @@
             <span class="main-name">ボーイスカウト名取第1団</span>
             <span class="sub-name">Boy Scouts Natori 1st Group</span>
         </a>
-        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+
         <nav>
-            <ul class="nav-links" id="nav-menu">
+            <ul class="nav-links">
                 <li><a href="about.html"><span class="ja">ボーイスカウトとは</span><span class="en">About</span></a></li>
                 <li><a href="sns.html"><span class="ja">各隊のSNS</span><span class="en">Social Media</span></a></li>
                 <li><a href="schedule.html"><span class="ja">年間活動計画</span><span class="en">Schedule</span></a></li>
@@ -128,6 +133,8 @@
                 <li><a href="contact.html"><span class="ja">お問い合わせ</span><span class="en">Contact</span></a></li>
             </ul>
         </nav>
+
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
     </header>
 
     <div class="slider-container">
@@ -178,7 +185,8 @@
 
     <script>
         const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
+        // スマホ用メニューは .nav-links を直接制御するようにJSも微調整
+        const navMenu = document.querySelector('.nav-links'); 
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
