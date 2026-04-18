@@ -13,7 +13,7 @@
             --bg-light: #f4f7f6;
             --text-dark: #333;
             --white: #ffffff;
-            --accent-red: #e74c3c; /* 補足説明用 */
+            --accent-red: #e74c3c;
         }
 
         body, html {
@@ -27,7 +27,7 @@
         .sp-br { display: none; }
         .pc-br { display: inline; }
 
-        /* --- 2. ヘッダー（共通スタイル） --- */
+        /* --- 2. ヘッダー（共通最新版） --- */
         header {
             position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
@@ -78,7 +78,7 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -88,16 +88,6 @@
             padding-left: 15px;
             margin-bottom: 40px;
             font-size: 1.8rem;
-        }
-
-        .fee-intro {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            border-left: 4px solid var(--scout-green);
-            font-size: 0.95rem;
-            line-height: 1.7;
         }
 
         .fee-section {
@@ -112,7 +102,7 @@
             font-size: 1.4rem; 
             color: var(--scout-green); 
             margin-top: 0; 
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex; 
             align-items: center; 
             gap: 12px; 
@@ -126,9 +116,10 @@
         }
 
         .section-desc {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #666;
             margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         table { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
@@ -160,21 +151,19 @@
             border: 1px solid #ddd;
             border-radius: 10px;
         }
-        .note-area h3 { font-size: 1.1rem; margin-top: 0; color: #444; }
+        .note-area h3 { font-size: 1.1rem; margin-top: 0; color: #444; margin-bottom: 15px; }
         .note-list { 
             font-size: 0.85rem; 
             color: #555; 
             padding-left: 20px; 
             line-height: 2;
+            margin: 0;
         }
-        .important { color: var(--accent-red); font-weight: bold; }
 
         /* --- 4. レスポンシブ --- */
         @media (max-width: 768px) {
             header { padding: 0 15px; }
             .hamburger { display: block; } 
-            .sp-br { display: inline; }
-            .pc-br { display: none; }
             
             .nav-links {
                 position: fixed; right: -100%; top: 0; width: 100%; height: 100vh;
@@ -187,7 +176,7 @@
             .nav-links a .en { font-size: 0.9rem; }
 
             .main-content { margin-top: 110px; }
-            .fee-section { padding: 20px; }
+            .fee-section { padding: 25px 20px; }
             h1 { font-size: 1.5rem; }
             h2 { font-size: 1.2rem; }
             th { width: 55%; font-size: 0.85rem; padding: 12px 8px; }
@@ -236,14 +225,9 @@
     <div class="main-content">
         <h1>費用について</h1>
 
-        <div class="fee-intro">
-            ボーイスカウト運動は、ボランティアの指導者によって運営されているため、<br class="pc-br">
-            一般的な習い事と比較しても、少ない負担で活動を続けることができます。
-        </div>
-
         <div class="fee-section">
             <h2>入団時（初年度）の費用</h2>
-            <p class="section-desc">入団手続きの際にお支払いいただく、最初の準備費用です。</p>
+            <p class="section-desc">入団の手続きおよび、活動を始めるための準備にかかる費用です。</p>
             <table>
                 <tr>
                     <th>入団金</th>
@@ -270,7 +254,7 @@
 
         <div class="fee-section">
             <h2>2年目以降の費用</h2>
-            <p class="section-desc">継続して活動する場合、入団金や制服代は不要となります。</p>
+            <p class="section-desc">次年度からは入団金や制服代が不要となり、年間の登録・運営費のみとなります。</p>
             <table>
                 <tr>
                     <th>日本連盟登録費（年間）</th>
@@ -290,10 +274,10 @@
         <div class="note-area">
             <h3>備考・注意事項</h3>
             <ul class="note-list">
-                <li><span class="important">活動実費について：</span> キャンプや遠征、大きなイベントの際は、交通費や食費などを実費として別途徴収する場合があります。</li>
-                <li><span class="important">途中入団の場合：</span> 月割での計算や、登録時期による調整がある場合がございます。詳しくはお問い合わせください。</li>
-                <li>制服・備品代は、隊（年齢区分）によって多少前後します。また、中古制服の譲渡（リユース）がある場合、費用を抑えることも可能です。</li>
-                <li>納入いただいた費用は、スカウトの安全教育や保険、活動資材の購入、施設の維持管理等に適切に使用されます。</li>
+                <li>キャンプや遠征等の大きな行事の際は、交通費や食費などの実費を別途徴収する場合があります。</li>
+                <li>年度の途中で入団される場合は、時期に応じて費用が調整されることがあります。</li>
+                <li>制服・備品代は年齢区分（隊）によって異なります。また、リユース品の活用については各隊の担当へご相談ください。</li>
+                <li>お預かりした費用は、スカウトの安全保険、活動資材、施設の維持管理等に充てられます。</li>
             </ul>
         </div>
     </div>
@@ -310,7 +294,6 @@
     </footer>
 
     <script>
-        // ハンバーガーメニューの挙動
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
         
@@ -319,7 +302,6 @@
             navMenu.classList.toggle('active');
         });
 
-        // メニューリンククリックで閉じる
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
