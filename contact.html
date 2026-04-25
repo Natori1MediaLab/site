@@ -42,7 +42,6 @@
         .nav-links a .en { display: block; font-size: 0.6rem; opacity: 0.7; text-transform: uppercase; text-align: center; }
         .nav-links a:hover { color: var(--scout-yellow); }
 
-        /* ハンバーガーボタン */
         .hamburger {
             display: none; cursor: pointer; z-index: 1100; background: none; border: none;
             width: 30px; height: 30px; position: relative; padding: 0;
@@ -79,6 +78,10 @@
             background: var(--error); color: white; font-size: 0.7rem;
             padding: 2px 6px; border-radius: 3px; margin-left: 8px;
         }
+        .form-group label .optional {
+            background: #999; color: white; font-size: 0.7rem;
+            padding: 2px 6px; border-radius: 3px; margin-left: 8px;
+        }
 
         input[type="text"], input[type="email"], input[type="tel"], select, textarea {
             width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
@@ -89,7 +92,10 @@
         }
 
         .radio-group { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
-        .radio-group label { font-weight: normal; color: var(--text-dark); cursor: pointer; }
+        .radio-group label { font-weight: normal; color: var(--text-dark); cursor: pointer; display: flex; align-items: center; gap: 5px; }
+
+        .form-row { display: flex; gap: 20px; }
+        .form-row .form-group { flex: 1; }
 
         .submit-btn {
             display: block; width: 100%; max-width: 300px; margin: 40px auto 0;
@@ -117,6 +123,7 @@
             .container { margin-top: 110px; }
             .contact-form { padding: 25px 15px; }
             .form-header h1 { font-size: 1.5rem; }
+            .form-row { flex-direction: column; gap: 0; }
         }
 
         footer { text-align: center; padding: 60px 20px; background: #333; color: #ccc; margin-top: 100px; }
@@ -158,34 +165,65 @@
                 </div>
             </div>
 
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+
             <div class="form-group">
                 <label for="p-name">保護者様のお名前<span class="required">必須</span></label>
                 <input type="text" id="p-name" name="保護者様お名前" placeholder="例：名取 太郎" required>
             </div>
 
-            <div class="form-group">
-                <label for="email">メールアドレス<span class="required">必須</span></label>
-                <input type="email" id="email" name="メールアドレス" placeholder="example@mail.com" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">メールアドレス<span class="required">必須</span></label>
+                    <input type="email" id="email" name="メールアドレス" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="tel">電話番号<span class="required">必須</span></label>
+                    <input type="tel" id="tel" name="電話番号" placeholder="090-0000-0000" required>
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="c-name">お子様のお名前<span class="optional">任意</span></label>
+                    <input type="text" id="c-name" name="お子様お名前" placeholder="例：名取 次郎">
+                </div>
+                <div class="form-group">
+                    <label for="c-kana">お子様のお名前（ふりがな）<span class="optional">任意</span></label>
+                    <input type="text" id="c-kana" name="お子様ふりがな" placeholder="例：なとり じろう">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>お子様の性別<span class="optional">任意</span></label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="お子様性別" value="男の子"> 男の子</label>
+                        <label><input type="radio" name="お子様性別" value="女の子"> 女の子</label>
+                        <label><input type="radio" name="お子様性別" value="回答しない"> 回答しない</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="grade">現在の学年<span class="required">必須</span></label>
+                    <select id="grade" name="お子様の学年" required>
+                        <option value="">選択してください</option>
+                        <option value="年長">幼稚園・保育園（年長）</option>
+                        <option value="小1">小学校 1年生</option>
+                        <option value="小2">小学校 2年生</option>
+                        <option value="小3">小学校 3年生</option>
+                        <option value="小4">小学校 4年生</option>
+                        <option value="小5">小学校 5年生</option>
+                        <option value="小6">小学校 6年生</option>
+                        <option value="中学生以上">中学生以上</option>
+                    </select>
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="tel">電話番号<span class="required">必須</span></label>
-                <input type="tel" id="tel" name="電話番号" placeholder="090-0000-0000" required>
-            </div>
-
-            <div class="form-group">
-                <label for="grade">お子様の学年（現在の学年）<span class="required">必須</span></label>
-                <select id="grade" name="お子様の学年" required>
-                    <option value="">選択してください</option>
-                    <option value="年長">幼稚園・保育園（年長）</option>
-                    <option value="小1">小学校 1年生</option>
-                    <option value="小2">小学校 2年生</option>
-                    <option value="小3">小学校 3年生</option>
-                    <option value="小4">小学校 4年生</option>
-                    <option value="小5">小学校 5年生</option>
-                    <option value="小6">小学校 6年生</option>
-                    <option value="中学生以上">中学生以上</option>
-                </select>
+                <label for="school">学校（幼稚園・保育園）名<span class="optional">任意</span></label>
+                <input type="text" id="school" name="学校名" placeholder="例：名取市立〇〇小学校">
             </div>
 
             <div class="form-group">
