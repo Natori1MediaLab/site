@@ -21,6 +21,7 @@
 
         body, html { margin: 0; padding: 0; width: 100%; font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Meiryo", sans-serif; background-color: var(--bg-light); overflow-x: hidden; scroll-behavior: smooth; }
         
+        /* 改行コントロール用クラス */
         .sp-br { display: none; }
         .pc-br { display: inline; }
 
@@ -76,17 +77,13 @@
 
         /* --- キャッチコピー --- */
         .copy-section { text-align: center; padding: 60px 20px; background: var(--white); }
-        .animated-text { font-size: 1.8rem; font-weight: bold; color: var(--scout-green); letter-spacing: 0.1em; }
+        .animated-text { font-size: 1.8rem; font-weight: bold; color: var(--scout-green); letter-spacing: 0.1em; line-height: 1.5; }
 
         /* --- 歓迎セクション --- */
         .welcome-section { padding: 40px 20px; background: #fff9db; text-align: center; }
         .welcome-box { max-width: 650px; margin: 0 auto; border: 2px dashed var(--scout-green); padding: 35px; border-radius: 25px; background: white; position: relative; }
         .welcome-tag { background: var(--scout-yellow); color: var(--scout-green); font-weight: bold; padding: 5px 18px; border-radius: 50px; font-size: 0.8rem; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); }
-        
-        /* 見出しの改行調整 */
         .welcome-text { font-size: 1.6rem; color: var(--scout-green); margin-bottom: 15px; line-height: 1.4; }
-        
-        /* 本文の改行調整 */
         .welcome-box p { line-height: 1.8; color: #444; margin-bottom: 25px; } 
 
         .btn-join { display: inline-block; padding: 15px 40px; background: var(--scout-green); color: white; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; transition: 0.3s; box-shadow: 0 4px 15px rgba(46, 90, 39, 0.2); }
@@ -119,6 +116,7 @@
             }
             .nav-links.active { right: 0; }
             
+            /* スマホ用改行を有効化 */
             .sp-br { display: inline; }
             .pc-br { display: none; }
 
@@ -164,7 +162,9 @@
     </div>
 
     <div class="copy-section">
-        <div class="animated-text">普段できない経験がここにある</div>
+        <div class="animated-text">
+            普段できない経験が<span class="sp-br"><br></span>ここにある
+        </div>
     </div>
 
     <div class="welcome-section">
